@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Capacitor } from '@capacitor/core';
-const route = useIonRouter();
-// const route = useRoute();
+// const route = useIonRouter();
+const route = useRoute();
 const { isShowingCart, toggleCart } = useCart();
 const { isShowingMobileMenu, toggleMobileMenu, addBodyClass, removeBodyClass } = useHelpers();
 const { siteName } = useAppConfig();
@@ -39,10 +39,15 @@ useHead({
       <MobileMenu v-if="isShowingMobileMenu" />
     </Transition>
 
-    <ion-app>
-    <ion-router-outlet />
-  </ion-app>
-    <!-- <NuxtPage /> -->
+
+  <!-- <ion-app>
+ 
+      <ion-router-outlet />
+    
+    
+  </ion-app> -->
+
+    <NuxtPage />
 
     <Transition name="fade">
       <div v-if="isShowingCart || isShowingMobileMenu" class="bg-black opacity-25 inset-0 z-40 fixed" @click="closeCartAndMenu" />

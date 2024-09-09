@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const route = useIonRouter();//useRoute();
+const route = useRoute();
 const { error } = defineProps<{ error: any }>();
 const { isShowingCart, toggleCart } = useCart();
 const { isShowingMobileMenu, toggleMobileMenu, addBodyClass, removeBodyClass } = useHelpers();

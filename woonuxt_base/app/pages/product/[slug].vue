@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { StockStatusEnum, ProductTypesEnum, type AddToCartInput } from '#woo';
-const route = useIonRouter();
-// const route = useRoute();
+// const route = useIonRouter();
+const route = useRoute();
 const { storeSettings } = useAppConfig();
 const { arraysEqual, formatArray, checkForVariationTypeOfAny } = useHelpers();
 const { addToCart, isUpdatingCart } = useCart();
@@ -137,14 +137,14 @@ const disabledAddToCart = computed(() => {
             <div class="flex items-center gap-2">
               <span class="text-gray-400">{{ $t('messages.shop.category', 2) }}:</span>
               <div class="product-categories" v-if="product.productCategories">
-                <ion-router-link
+                <NuxtLink
                   v-for="category in product.productCategories.nodes"
                   :key="category.slug"
                   :to="`/product-category/${decodeURIComponent(category.slug)}`"
                   class="hover:text-primary"
                   :title="category.name"
                   >{{ category.name }}<span class="comma">, </span>
-                </ion-router-link>
+                </NuxtLink>
               </div>
             </div>
           </div>

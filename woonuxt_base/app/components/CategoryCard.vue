@@ -10,7 +10,7 @@ const imgHeight = Math.round(imgWidth * 1.125);
 </script>
 
 <template>
-  <ion-router-link
+  <NuxtLink
     v-if="node"
     :to="`/product-category/${decodeURIComponent(node.slug)}`"
     class="relative flex justify-center overflow-hidden border border-white rounded-xl item snap-mandatory snap-x">
@@ -27,7 +27,7 @@ const imgHeight = Math.round(imgWidth * 1.125);
       placeholder-class="blur-xl" />
     <div class="absolute inset-x-0 bottom-0 opacity-50 bg-gradient-to-t from-black to-transparent h-1/2" />
     <span class="relative z-10 mt-auto mb-2 text-sm font-semibold text-white capitalize md:text-base md:mb-4" v-html="node.name" />
-  </ion-router-link>
+  </NuxtLink>
 </template>
 
 <style lang="postcss" scoped>

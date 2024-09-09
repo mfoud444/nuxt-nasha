@@ -12,7 +12,7 @@ const allCategories = data.value?.productCategories?.nodes || [];
 const { getFilter, setFilter, isFiltersActive } = useFiltering();
 const selectedTerms = ref(getFilter('category') || []);
 
-const route = useIonRouter();//useRoute();
+const route = useRoute();
 const categorySlug = route.params.categorySlug;
 if (categorySlug) selectedTerms.value = [categorySlug];
 

@@ -2,8 +2,7 @@
 const { setProducts, updateProductList } = useProducts();
 const { isQueryEmpty } = useHelpers();
 const { storeSettings } = useAppConfig();
-const route = useIonRouter();
-// const route = useRoute();
+const route = useRoute();
 const slug = route.params.slug;
 
 const { data } = await useAsyncGql('getProducts', { slug });

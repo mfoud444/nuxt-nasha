@@ -21,13 +21,29 @@ export default defineNuxtConfig({
     sharedPrerenderData: true,
   },
 
+  css: [
+    resolve('./public/css/global.less')
+  ],
+
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
   plugins: [resolve('./app/plugins/init.ts')],
 
   components: [{ path: resolve('./app/components'), pathPrefix: false }],
 
-  
-  modules: ['woonuxt-settings', 'nuxt-graphql-client', '@nuxtjs/tailwindcss', '@nuxt/icon', '@nuxt/image', '@nuxtjs/i18n', 'nuxtjs-naive-ui', "@nuxtjs/ionic"],
-
+  modules: [
+    'woonuxt-settings',
+    'nuxt-graphql-client',
+    '@nuxtjs/tailwindcss',
+    '@nuxt/icon',
+    '@nuxt/image',
+    '@nuxtjs/i18n',
+    'nuxtjs-naive-ui',
+  ],
   'graphql-client': {
     clients: {
       default: {
@@ -65,6 +81,7 @@ export default defineNuxtConfig({
     },
   },
 
+
   // Multilingual support
   i18n: {
     locales: [
@@ -82,6 +99,7 @@ export default defineNuxtConfig({
   },
 
   vite: {
+
     plugins: [
       AutoImport({
         imports: [
@@ -100,5 +118,18 @@ export default defineNuxtConfig({
         
       })
     ]
-  }
+  },
+
+  // ionic: {
+  //   integrations: {
+  //     //
+  //   },
+  //   css: {
+  //     //
+  //   },
+  //   config: {
+    
+  //     mode: 'md',
+  //   }
+  // },
 });

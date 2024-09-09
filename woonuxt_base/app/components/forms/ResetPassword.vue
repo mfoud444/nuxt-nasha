@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n();
-const router = useIonRouter();//useRouter();
-const route = useIonRouter();//useRoute();
+const router = useRouter();
+const route = useRoute();
 const { viewer, resetPasswordWithKey, loginUser } = useAuth();
 
 const password = ref('');
@@ -83,9 +83,9 @@ useHead({
       <Transition name="scale-y" mode="out-in">
         <div v-if="errorMessage" class="text-sm mb-4">
           <span class="text-red-500" v-html="errorMessage"></span>
-          <ion-router-link v-if="isInvalidLink" class="underline cursor-pointer pl-1" to="/my-account?action=forgotPassword">{{
+          <NuxtLink v-if="isInvalidLink" class="underline cursor-pointer pl-1" to="/my-account?action=forgotPassword">{{
             $t('messages.account.requestNewLink')
-          }}</ion-router-link>
+          }}</NuxtLink>
         </div>
       </Transition>
 
@@ -96,7 +96,7 @@ useHead({
     </form>
 
     <div class="my-8 text-center cursor-pointer">
-      <ion-router-link to="/my-account">{{ $t('messages.account.backToLogin') }}</ion-router-link>
+      <NuxtLink to="/my-account">{{ $t('messages.account.backToLogin') }}</NuxtLink>
     </div>
   </div>
 </template>

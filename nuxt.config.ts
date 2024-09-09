@@ -30,6 +30,6 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: '2024-07-09',
-  modules: ["nuxtjs-naive-ui","@nuxtjs/ionic"],
+  modules: ["nuxtjs-naive-ui"],
  
 });

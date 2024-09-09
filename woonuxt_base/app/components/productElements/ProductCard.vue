@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const route = useIonRouter();//useRoute();
+const route = useRoute();
 const { storeSettings } = useAppConfig();
 const props = defineProps({
   node: { type: Object as PropType<Product>, required: true },
@@ -38,7 +38,7 @@ const imagetoDisplay = computed<string>(() => {
 
 <template>
   <div class="relative product-card">
-    <ion-router-link :to="`/product/${decodeURIComponent(node.slug)}`" :title="node.name">
+    <NuxtLink :to="`/product/${decodeURIComponent(node.slug)}`" :title="node.name">
       <SaleBadge :node="node" class="absolute top-2 right-2" />
       <NuxtImg
         v-if="imagetoDisplay"
@@ -51,12 +51,12 @@ const imagetoDisplay = computed<string>(() => {
         :sizes="`${imgWidth / 2}px md:${imgWidth}px`"
         placeholder
         placeholder-class="blur-xl" />
-    </ion-router-link>
+    </NuxtLink>
     <div class="p-2">
       <StarRating v-if="storeSettings.showReviews" :rating="node.averageRating" :count="node.reviewCount" />
-      <ion-router-link :to="`/product/${decodeURIComponent(node.slug)}`" :title="node.name">
+      <NuxtLink :to="`/product/${decodeURIComponent(node.slug)}`" :title="node.name">
         <h2 class="mb-2 font-light leading-tight">{{ node.name }}</h2>
-      </ion-router-link>
+      </NuxtLink>
       <ProductPrice class="text-sm" :sale-price="node.salePrice" :regular-price="node.regularPrice" />
     </div>
   </div>

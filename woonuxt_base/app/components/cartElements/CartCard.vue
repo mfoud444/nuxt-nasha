@@ -31,7 +31,7 @@ const salePercentage = computed(() => {
 <template>
   <SwipeCard @remove="removeItem">
     <div v-if="productType" class="flex items-center gap-3 group">
-      <ion-router-link :to="productSlug">
+      <NuxtLink :to="productSlug">
         <NuxtImg
           width="64"
           height="64"
@@ -40,10 +40,10 @@ const salePercentage = computed(() => {
           :alt="productType.image?.altText || productType.name"
           :title="productType.image?.title || productType.name"
           loading="lazy" />
-      </ion-router-link>
+      </NuxtLink>
       <div class="flex-1">
         <div class="flex gap-x-2 gap-y-1 flex-wrap items-center">
-          <ion-router-link class="leading-tight" :to="productSlug">{{ productType.name }}</ion-router-link>
+          <NuxtLink class="leading-tight" :to="productSlug">{{ productType.name }}</NuxtLink>
           <span v-if="productType.salePrice" class="text-[10px] border-green-200 leading-none bg-green-100 inline-block p-0.5 rounded text-green-600 border"
             >Save {{ salePercentage }}
           </span>

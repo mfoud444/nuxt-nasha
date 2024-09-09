@@ -19,11 +19,11 @@ const format = computed(() => [
 <template>
   <div class="flex text-sm leading-none text-gray-400 gap-1 items-center">
     <span>
-      <ion-router-link to="/" class="hover:text-primary">{{ $t('messages.general.home') }}</ion-router-link>
+      <NuxtLink to="/" class="hover:text-primary">{{ $t('messages.general.home') }}</NuxtLink>
       <span> /</span>
     </span>
     <span v-for="(link, i) in format" :key="link.name || i">
-      <ion-router-link v-if="link.slug" :to="decodeURIComponent(link.slug)" class="hover:text-primary">{{ link.name }}</ion-router-link>
+      <NuxtLink v-if="link.slug" :to="decodeURIComponent(link.slug)" class="hover:text-primary">{{ link.name }}</NuxtLink>
       <span v-else class="text-gray-800">{{ link.name }}</span>
       <span v-if="i + 1 < format.length"> /</span>
     </span>

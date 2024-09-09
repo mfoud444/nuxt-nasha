@@ -18,13 +18,13 @@ const { cart, toggleCart, isUpdatingCart } = useCart();
           <CartCard v-for="item in cart.contents?.nodes" :key="item.key" :item />
         </ul>
         <div class="px-8 mb-8">
-          <ion-router-link
+          <NuxtLink
             class="block p-3 text-lg text-center text-white bg-gray-800 rounded-lg shadow-md justify-evenly hover:bg-gray-900"
             to="/checkout"
             @click.prevent="toggleCart()">
             <span class="mx-2">{{ $t('messages.shop.checkout') }}</span>
             <span v-html="cart.total" />
-          </ion-router-link>
+          </NuxtLink>
         </div>
       </template>
       <!-- Empty Cart Message -->

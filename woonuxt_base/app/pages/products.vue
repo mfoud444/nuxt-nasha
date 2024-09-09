@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const { setProducts, updateProductList } = useProducts();
-// const route = useRoute();
-const route = useIonRouter();
+const route = useRoute();
 const { storeSettings } = useAppConfig();
 const { isQueryEmpty } = useHelpers();
 

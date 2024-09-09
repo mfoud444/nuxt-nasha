@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'woonuxt',
+  appId: 'com.nasha.store',
+  appName: 'Nasha Store',
   webDir: '.output/public'
 };
 

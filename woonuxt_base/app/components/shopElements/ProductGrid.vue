@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const route = useIonRouter();//useRoute();
+const route = useRoute();
 const { productsPerPage } = useHelpers();
 const { products } = useProducts();
 const page = ref(parseInt(route.params.pageNumber as string) || 1);

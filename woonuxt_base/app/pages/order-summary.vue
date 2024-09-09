@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { OrderStatusEnum } from '#woo';
-// const route = useIonRouter();
-const { query, params, name } = useIonRouter();//useRoute();
+
+const { query, params, name } = useRoute();
 const { customer } = useAuth();
 const { formatDate, formatPrice } = useHelpers();
 const { t } = useI18n();
@@ -72,13 +72,13 @@ useSeoMeta({
       <div class="w-full">
         <template v-if="isSummaryPage">
           <div class="flex items-center gap-4">
-            <ion-router-link
+            <NuxtLink
               to="/my-account?tab=orders"
               class="inline-flex items-center justify-center p-2 border rounded-md"
               title="Back to orders"
               aria-label="Back to orders">
               <Icon name="ion:chevron-back-outline" />
-            </ion-router-link>
+            </NuxtLink>
             <h1 class="text-xl font-semibold">{{ $t('messages.shop.orderSummary') }}</h1>
           </div>
         </template>
@@ -123,7 +123,7 @@ useSeoMeta({
 
         <div class="grid gap-2">
           <div v-if="order.lineItems" v-for="item in order.lineItems.nodes" :key="item.id" class="flex items-center justify-between gap-8">
-            <ion-router-link v-if="item.product?.node" :to="`/product/${item.product.node.slug}`">
+            <NuxtLink v-if="item.product?.node" :to="`/product/${item.product.node.slug}`">
               <NuxtImg
                 class="w-16 h-16 rounded-xl"
                 :src="item.variation?.node?.image?.sourceUrl || item.product.node?.image?.sourceUrl || '/images/placeholder.png'"
@@ -132,7 +132,7 @@ useSeoMeta({
                 width="64"
                 height="64"
                 loading="lazy" />
-            </ion-router-link>
+            </NuxtLink>
             <div class="flex-1 leading-tight">
               {{ item.variation ? item.variation?.node?.name : item.product?.node.name! }}
             </div>

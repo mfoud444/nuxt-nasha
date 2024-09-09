@@ -3,7 +3,7 @@ const { isShowingSearch } = useSearching();
 </script>
 
 <template>
-  <header class="sticky top-0 z-40 bg-white shadow-sm shadow-light-500">
+  <header class="sticky  top-0 mx-4 z-40 myglass my-2 shadow-sm py-2  shadow-light-500">
     <div class="container flex items-center justify-between py-4">
       <div class="flex items-center">
         <MenuTrigger class="lg:hidden" />

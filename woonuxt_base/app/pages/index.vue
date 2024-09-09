@@ -75,7 +75,7 @@ useSeoMeta({
     <section class="container my-16" v-if="popularProducts">
       <div class="flex items-end justify-between">
         <h2 class="text-lg font-semibold md:text-2xl">Popular Products</h2>
-        <ion-router-link class="text-primary" to="/products">{{ $t('messages.general.viewAll') }}</ion-router-link>
+        <NuxtLink class="text-primary" to="/products">{{ $t('messages.general.viewAll') }}</NuxtLink>
       </div>
       <ProductRow :products="popularProducts" class="grid-cols-2 md:grid-cols-4 lg:grid-cols-5 mt-8" />
     </section>

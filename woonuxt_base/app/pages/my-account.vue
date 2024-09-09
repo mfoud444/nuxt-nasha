@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 const { logoutUser, viewer, customer, isPending, avatar } = useAuth();
 const { cart } = useCart();
-// const route = useRoute();
-const route = useIonRouter();
+const route = useRoute();
+
 const activeTab = computed(() => route.query.tab || 'my-details');
 const showLoader = computed(() => !viewer && !customer);
 
@@ -34,22 +34,22 @@ useSeoMeta({
           </section>
           <hr class="my-8" />
           <nav class="flex text-gray-700 lg:grid flex-wrap w-full gap-1.5 my-8 min-w-[240px] lg:w-auto items-start">
-            <ion-router-link to="/my-account?tab=my-details" class="flex items-center gap-4 p-2 px-4" :class="{ active: activeTab == 'my-details' }">
+            <NuxtLink to="/my-account?tab=my-details" class="flex items-center gap-4 p-2 px-4" :class="{ active: activeTab == 'my-details' }">
               <Icon name="ion:information-circle-outline" size="22" />
               {{ $t('messages.general.myDetails') }}
-            </ion-router-link>
-            <ion-router-link to="/my-account?tab=orders" class="flex items-center gap-4 p-2 px-4" :class="{ active: activeTab == 'orders' }">
+            </NuxtLink>
+            <NuxtLink to="/my-account?tab=orders" class="flex items-center gap-4 p-2 px-4" :class="{ active: activeTab == 'orders' }">
               <Icon name="ion:bag-check-outline" size="22" />
               {{ $t('messages.shop.order', 2) }}
-            </ion-router-link>
-            <ion-router-link to="/my-account?tab=downloads" class="flex items-center gap-4 p-2 px-4" :class="{ active: activeTab == 'downloads' }">
+            </NuxtLink>
+            <NuxtLink to="/my-account?tab=downloads" class="flex items-center gap-4 p-2 px-4" :class="{ active: activeTab == 'downloads' }">
               <Icon name="ion:cloud-download-outline" size="22" />
               {{ $t('messages.general.downloads') }}
-            </ion-router-link>
-            <ion-router-link to="/my-account?tab=wishlist" class="flex items-center gap-4 p-2 px-4" :class="{ active: activeTab == 'wishlist' }">
+            </NuxtLink>
+            <NuxtLink to="/my-account?tab=wishlist" class="flex items-center gap-4 p-2 px-4" :class="{ active: activeTab == 'wishlist' }">
               <Icon name="ion:heart-outline" size="22" />
               Wishlist
-            </ion-router-link>
+            </NuxtLink>
           </nav>
           <template class="hidden lg:block">
             <hr class="my-8" />
