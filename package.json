@@ -1,0 +1,47 @@
+{
+  "name": "woonuxt",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev --host",
+    "dev:ssl": "NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev --https --ssl-cert localhost.pem --ssl-key localhost-key.pem",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "serve": "nuxi generate && npx serve .output/public -l 8080"
+  },
+  "dependencies": {
+    "@capacitor/android": "6.1.2",
+    "@capacitor/app": "6.0.1",
+    "@capacitor/core": "6.1.2",
+    "@capacitor/haptics": "6.0.1",
+    "@capacitor/ios": "^6.1.2",
+    "@capacitor/keyboard": "6.0.2",
+    "@capacitor/status-bar": "6.0.1",
+    "@stripe/stripe-js": "^4.1.0",
+    "@vueform/slider": "^2.1.10",
+    "@vueuse/core": "^10.11.0",
+    "unplugin-auto-import": "^0.17.1",
+    "unplugin-vue-components": "^0.27.4"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "6.1.2",
+    "@iconify-json/ion": "^1.2.0",
+    "@nuxt/icon": "^1.2.0",
+    "@nuxt/image": "1.7.0",
+    "@nuxtjs/i18n": "^8.3.1",
+    "@nuxtjs/ionic": "^0.15.1",
+    "@nuxtjs/tailwindcss": "^6.12.1",
+    "@tailwindcss/typography": "^0.5.13",
+    "naive-ui": "^2.39.0",
+    "nuxt": "^3.12.4",
+    "nuxt-graphql-client": "^0.2.35",
+    "nuxtjs-naive-ui": "^1.0.2",
+    "prettier": "^3.3.3",
+    "woonuxt-settings": "^1.0.58"
+  },
+  "overrides": {
+    "sharp": "0.32.6"
+  }
+}
