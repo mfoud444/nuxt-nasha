@@ -6,4 +6,4 @@
   command = "nuxt generate"
 
 [images]
-  remote_images = ["https://nashast.store/.*"]
+  remote_images = ["https://nashastore.netlify.app/.*"]
