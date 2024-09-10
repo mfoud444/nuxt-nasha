@@ -58,7 +58,7 @@
                   <p>
                     Nasha Store offers a wide range of products from electronics to fashion. Enjoy a seamless shopping experience with features like product reviews, filters, and related product recommendations.
                   </p>
-                  <div class='flex items-center gap-x-3 sm:text-sm'>
+                  <div class='flex flex-col md:flex-row items-center gap-x-3 sm:text-sm'>
                  
                     
                     <a href="javascript:void()" >
