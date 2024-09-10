@@ -4,26 +4,26 @@ const { wooNuxtVersionInfo } = useHelpers();
 </script>
 
 <template>
-  <footer class="bg-grad order-last mx-4 my-2 myglass"  
+  <footer class="bg-grad order-last  my-2 myglass"  
  
       >
-    <div class="container flex flex-wrap justify-between gap-12 my-24 md:gap-24">
+    <div class="container flex flex-wrap justify-between gap-12 my-12 md:gap-24">
       <div class="mr-auto">
         <Logo />
         <WebsiteShortDescription />
-        <LangSwitcher class="mt-8" />
+        <LangSwitcher class="mt-14" />
       </div>
-      <div class="w-3/7 lg:w-auto">
-        <div class="mb-2 font-semibold underlined">Information</div>
+      <!-- <div class="w-3/7 lg:w-auto">
+        <div class="mb-2 font-semibold underline--magical">Information</div>
         <div class="text-sm">
           <a class="py-1.5 block" href="https://github.com/scottyzen/woonuxt?tab=readme-ov-file#next-generation-front-end-for-woocommerce" target="_blank">About</a>
           <a href="/" class="py-1.5 block">Careers</a>
           <a href="/" class="py-1.5 block">Press</a>
           <a href="https://woonuxt.com/faq" class="py-1.5 block" rel="noreferrer" target="_blank">FAQ's</a>
         </div>
-      </div>
+      </div> -->
       <div class="w-3/7 lg:w-auto">
-        <div class="mb-2 font-semibold underlined">Products</div>
+        <span class="mb-2 font-semibold text-xl underline--magical">Products</span>
         <div class="text-sm">
           <NuxtLink to="/products" class="py-1.5 block">{{ $t('messages.shop.newArrivals') }}</NuxtLink>
           <NuxtLink to="/products?filter=sale[true]" class="py-1.5 block">On sale</NuxtLink>
@@ -32,7 +32,7 @@ const { wooNuxtVersionInfo } = useHelpers();
         </div>
       </div>
       <div class="w-3/7 lg:w-auto">
-        <div class="mb-2 font-semibold underlined">{{ $t('messages.general.customerService') }}</div>
+        <span class="mb-2 font-semibold text-xl underline--magical">{{ $t('messages.general.customerService') }}</span>
         <div class="text-sm">
           <NuxtLink to="/contact" class="py-1.5 block">Contact Us</NuxtLink>
           <a href="/" class="py-1.5 block">Shipping & Returns</a>
@@ -41,7 +41,7 @@ const { wooNuxtVersionInfo } = useHelpers();
         </div>
       </div>
       <div class="w-3/7 lg:w-auto">
-        <div class="mb-2 font-semibold underlined">{{ $t('messages.account.myAccount') }}</div>
+        <span class="mb-2 font-semibold text-xl underline--magical">{{ $t('messages.account.myAccount') }}</span>
         <div class="text-sm">
         
           <NuxtLink to="/my-account/" class="py-1.5 block">{{ $t('messages.account.myAccount') }}</NuxtLink>
@@ -51,7 +51,7 @@ const { wooNuxtVersionInfo } = useHelpers();
         </div>
       </div>
     </div>
-    <div class="container border-t flex items-center justify-center mb-4">
+    <div class="container  flex items-center justify-center mb-4">
       <div class="copywrite">
         <p class="py-4 text-xs text-center">
           <a href="" :title="`Nasha v${wooNuxtVersionInfo}`">@ all </a> - by

@@ -21,7 +21,6 @@
     "@stripe/stripe-js": "^4.1.0",
     "@vueform/slider": "^2.1.10",
     "@vueuse/core": "^10.11.0",
-    "less": "^4.2.0",
     "unplugin-auto-import": "^0.17.1",
     "unplugin-vue-components": "^0.27.4"
   },
@@ -35,6 +34,8 @@
     "@nuxtjs/ionic": "^0.15.1",
     "@nuxtjs/tailwindcss": "^6.12.1",
     "@tailwindcss/typography": "^0.5.13",
+    "less": "^4.2.0",
+    "less-loader": "^12.2.0",
     "naive-ui": "^2.39.0",
     "nuxt": "^3.12.4",
     "nuxt-graphql-client": "^0.2.35",

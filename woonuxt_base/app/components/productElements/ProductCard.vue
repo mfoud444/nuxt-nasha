@@ -37,7 +37,7 @@ const imagetoDisplay = computed<string>(() => {
 </script>
 
 <template>
-  <div class="relative product-card">
+  <div class="relative product-card p-2  flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
     <NuxtLink :to="`/product/${decodeURIComponent(node.slug)}`" :title="node.name">
       <SaleBadge :node="node" class="absolute top-2 right-2" />
       <NuxtImg

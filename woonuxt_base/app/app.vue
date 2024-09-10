@@ -60,7 +60,7 @@ useHead({
 <style lang="postcss">
 html,
 body {
-  @apply bg-gray-100 text-gray-900;
+  @apply bg-gray-100 text-gray-900 container;
   scroll-behavior: smooth;
 }
 
