@@ -36,8 +36,8 @@
   
       <!-- Section -->
         <section>
-          <div class="max-w-screen-xl  mx-auto px-4 py-28 gap-12 text-gray-600 overflow-hidden md:px-8 md:flex">
-              <div class='flex-none space-y-5 max-w-xl'>
+          <div class="max-w-screen-xl  mx-auto px-4 py-4 gap-12 text-gray-600 overflow-hidden md:px-8 md:flex ">
+              <div class='flex-none space-y-5 text-center md:text-left max-w-xl'>
                   <a href="javascript:void(0)" class='inline-flex gap-x-6 items-center myglass rounded-full p-1 pr-6 border text-sm font-medium duration-150 hover:bg-white'>
                       <span class='inline-block rounded-full px-3 py-1 bg-indigo-600 text-white'>
                           News
