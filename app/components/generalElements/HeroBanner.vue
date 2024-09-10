@@ -36,7 +36,7 @@
   
       <!-- Section -->
         <section>
-          <div class="max-w-screen-xl  mx-auto px-4 py-4 pt-8 gap-12 text-gray-600 overflow-hidden md:px-8 md:flex ">
+          <div class="max-w-screen-xl  mx-auto px-4 py-4 md:pt-8 gap-12 text-gray-600 overflow-hidden md:px-8 md:flex ">
               <div class='flex-none space-y-5 text-center md:text-left max-w-xl'>
                   <a href="javascript:void(0)" class='inline-flex gap-x-6 items-center myglass rounded-full p-1 pr-6 border text-sm font-medium duration-150 hover:bg-white'>
                       <span class='inline-block rounded-full px-3 py-1 bg-indigo-600 text-white'>
@@ -56,7 +56,7 @@
                       Build your SaaS exactly how you want
                   </h1> -->
                   <p>
-                    Nasha Store offers a wide range of products from electronics to fashion. Enjoy a seamless shopping experience with features like product reviews, filters, and related product recommendations.
+                    Nasha Store offers a wide range of products from electronics to fashion. Enjoy a seamless shopping experience.
                   </p>
                   <div class='flex flex-col gap-y-3 md:flex-row items-center gap-x-3 sm:text-sm'>
                  
