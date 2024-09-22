@@ -1,10 +1,10 @@
 #!/bin/bash
 # sudo  /opt/lampp/lampp start
-# npx nuxi generate
+npx nuxi generate
 # npx capacitor-assets generate
-# npx cap sync
+npx cap sync
 
-# npx cap run android 
+npx cap run android 
 
 copy_apk() {
   local apk_path="woonuxt_base/public/apk/nashast-store.apk"
@@ -21,4 +21,4 @@ copy_apk() {
   cp "android/app/build/outputs/apk/debug/app-debug.apk" "$apk_path"
    echo "Sucessful Copy new file"
 }
-# copy_apk
+copy_apk
