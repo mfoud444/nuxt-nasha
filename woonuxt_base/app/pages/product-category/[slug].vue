@@ -5,17 +5,26 @@ const { storeSettings } = useAppConfig();
 const route = useRoute();
 const slug = route.params.slug;
 
-const { data } = await useAsyncGql('getProducts', { slug });
+// const { data } = await useAsyncGql('getProducts', { slug });
+const { data, pending } = await useAsyncGql('getProducts', { slug });
 const productsInCategory = (data.value?.products?.nodes || []) as Product[];
 setProducts(productsInCategory);
 
 onMounted(() => {
+  console.log("Route Query Updated:", route.name , 'slug', route.params.slug);
   if (!isQueryEmpty.value) updateProductList();
 });
-
+const isLoading = ref(true);
+watch(
+  () => pending.value,
+  (newPending) => {
+    isLoading.value = newPending;
+  }
+);
 watch(
   () => route.query,
   () => {
+    console.log("Route Query Updated:", route.query);
     if (route.name !== 'product-category-slug') return;
     updateProductList();
   },
@@ -28,6 +37,10 @@ useHead({
 </script>
 
 <template>
+    <!-- <div v-if="showLoader" class="flex flex-col min-h-[500px]">
+      <LoadingIcon class="m-auto" />
+    </div> -->
+    
   <div class="container flex items-start gap-16" v-if="productsInCategory.length">
     <Filters v-if="storeSettings.showFilters" :hide-categories="true" />
 
@@ -40,4 +53,5 @@ useHead({
       <ProductGrid />
     </div>
   </div>
+
 </template>

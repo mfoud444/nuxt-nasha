@@ -1,6 +1,7 @@
 <script setup>
+const { updateShippingLocation , isLoading } = useCheckout();
 const { orderInput } = useCheckout();
-const { updateShippingLocation } = useCheckout();
+
 
 const shipToDifferentAddress = computed(() => orderInput.value.shipToDifferentAddress);
 
@@ -12,7 +13,7 @@ const shipping = toRef(props, 'modelValue');
 </script>
 
 <template>
-  <div class="grid w-full gap-4 lg:grid-cols-2">
+  <div  class="grid w-full gap-4 lg:grid-cols-2">
     <div class="w-full">
       <label for="first-name">{{ $t('messages.billing.firstName') }}</label>
       <input v-model="shipping.firstName" placeholder="John" type="text" :required="shipToDifferentAddress" />

@@ -83,8 +83,8 @@ async function addComment() {
         </div>
       </div>
     </div>
-    <div class="mt-10 text-xl mb-2 text-gray-900">Share your thoughts</div>
-    <div class="text-sm mb-4">If you have used this product, we would love to hear about your experience.</div>
+    <div class="mt-10 text-xl mb-2 text-gray-900">{{ $t('messages.shop.rateReview') }}</div>
+    <div class="text-sm mb-4">{{ $t('messages.shop.rateContent') }}</div>
     <button @click="show = !show" class="border rounded-lg text-center w-full p-2">{{ show ? $t('messages.shop.close') : $t('messages.shop.writeReview') }}</button>
     <transition class="ease-in-out transform transition-all" name="scale-y">
       <form v-if="show" @submit.prevent="addComment" class="writeReview">
@@ -131,6 +131,7 @@ async function addComment() {
     </transition>
   </div>
 </template>
+
 
 <style lang="postcss" scoped>
 .disable-star {

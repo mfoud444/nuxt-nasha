@@ -4,6 +4,7 @@ const { resolve } = createResolver(import.meta.url);
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+import Terminal from 'vite-plugin-terminal'
 
 export default defineNuxtConfig({
   future: {
@@ -15,11 +16,14 @@ export default defineNuxtConfig({
       link: [{ rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
     },
     pageTransition: { name: 'page', mode: 'out-in' },
+  
   },
 
   experimental: {
     sharedPrerenderData: true,
+  
   },
+ 
 
   css: [
     resolve('./public/css/global.less')
@@ -42,22 +46,63 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/image',
     '@nuxtjs/i18n',
-    'nuxtjs-naive-ui',
+    "@bg-dev/nuxt-naiveui",
+    '@pinia/nuxt',
+  
+  
   ],
-  'graphql-client': {
-    clients: {
-      default: {
-        host: process.env.GQL_HOST || 'http://localhost:4000/graphql',
-        corsOptions: { mode: 'cors', credentials: 'include' },
-      },
-    },
+  pinia: {
+    storesDirs: ['./stores/**'],
   },
+  // 'graphql-client': {
+  //   clients: {
+  //     default: {
+  //       host: process.env.GQL_HOST || 'http://localhost:4000/graphql',
+  //       corsOptions: { 
+  //         mode: 'cors',
+  //          credentials: 'include' 
+  //         },
+  //     },
+  //   },
+  // },
+  // runtimeConfig: {
+  //   public: {
+  //     GQL_HOST: "http://192.168.99.176/wordpress/index.php?graphql",
+  //     corsOptions: { 
+  //       mode: 'cors',
+  //        credentials: 'include' 
+  //       },
+  //   }
+  // },
 
   alias: {
     '#constants': resolve('./app/constants'),
     '#woo': '../.nuxt/gql/default',
+    // '@stores': resolve('./app/stores'),  
+    // '@utils': resolve('./app/utils'),  
   },
 
+  // hooks: {
+  //   'pages:extend'(pages) {
+  //     // Remove all pages
+  //     pages.splice(0, pages.length);
+      
+  //     // Add the index page as a catch-all route
+  //     pages.push({
+  //       name: 'index',
+  //       path: '/:pathMatch(.*)*',
+  //       file: resolve('./app/pages/index.vue')
+  //     });
+
+  //   },
+        
+  // },
+
+  // nitro: {
+  //   routeRules: {
+  //     '/': { prerender: true },
+  //   },
+  // },
   hooks: {
     'pages:extend'(pages) {
       const addPage = (name: string, path: string, file: string) => {
@@ -74,12 +119,13 @@ export default defineNuxtConfig({
 
   nitro: {
     routeRules: {
-      '/': { prerender: true },
-      '/products/**': { swr: 3600 },
+      // '/': { prerender: true },
+      // '/products/**': { swr: 3600 },
       '/checkout/order-received/**': { ssr: false },
       '/order-summary/**': { ssr: false },
     },
   },
+
 
 
   // Multilingual support
@@ -99,11 +145,15 @@ export default defineNuxtConfig({
   },
 
   vite: {
-
+    optimizeDeps: {
+      exclude: ['manifest-route-rule']
+    },
     plugins: [
       AutoImport({
         imports: [
+          'vue',
           {
+           
             'naive-ui': [
               'useDialog',
               'useMessage',
@@ -116,20 +166,11 @@ export default defineNuxtConfig({
       Components({
         resolvers: [NaiveUiResolver()],
         
+      }),
+
+      Terminal({
+        output: ['terminal', 'console']
       })
     ]
   },
-
-  // ionic: {
-  //   integrations: {
-  //     //
-  //   },
-  //   css: {
-  //     //
-  //   },
-  //   config: {
-    
-  //     mode: 'md',
-  //   }
-  // },
 });

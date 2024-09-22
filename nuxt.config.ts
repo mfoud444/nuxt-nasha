@@ -1,8 +1,3 @@
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
-
-
 export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
@@ -30,6 +25,6 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: '2024-07-09',
-  modules: ["nuxtjs-naive-ui"],
+
  
 });

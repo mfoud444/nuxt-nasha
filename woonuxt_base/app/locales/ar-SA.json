@@ -33,7 +33,43 @@
         "goHome": "الذهاب إلى الرئيسية",
         "newsletter": "النشرة الإخبارية",
         "customerService": "خدمة العملاء",
-        "processing": "جارٍ المعالجة"
+        "processing": "جارٍ المعالجة",
+
+        "news": "أخبار",
+        "readLaunchPost": "اقرأ منشور الإطلاق من هنا",
+        "startShopping": "ابدأ التسوق الآن مع متجر ناشا.",
+        "shopDescription": "يقدم متجر ناشا مجموعة واسعة من المنتجات من الإلكترونيات إلى الأزياء. استمتع بتجربة تسوق سلسة.",
+        "downloadDirect": "تنزيل مباشر",
+        "siteName": "متجر ناشا",
+        "shortDescription": "متجرك المفضل على الإنترنت للحصول على منتجات ذات جودة بأسعار رائعة.",
+        "description": "يقدم متجر ناشا مجموعة واسعة من المنتجات من الإلكترونيات إلى الأزياء. استمتع بتجربة تسوق سلسة مع ميزات مثل تقييمات المنتجات والفلاتر وتوصيات المنتجات ذات الصلة. اكتشف مجموعاتنا المختارة وتسوق بثقة بأسعار تنافسية.",
+        "freeShipping": "شحن مجاني",
+        "freeShippingDescription": "شحن مجاني للطلبات التي تزيد عن 50 يورو",
+        "peaceOfMind": "راحة البال",
+        "moneyBackGuarantee": "ضمان استرداد الأموال خلال 30 يومًا",
+        "paymentSecure": "100% أمان الدفع",
+        "securePaymentDescription": "مدفوعاتك آمنة معنا.",
+        "support": "دعم 24/7",
+        "supportDescription": "دعم عبر الإنترنت على مدار الساعة",
+        "noProductsFound": "تعذر جلب المنتجات من متجرك. يرجى التحقق من إعداداتك.",
+        "refreshList": "تحديث القائمة",
+        "showing": "يعرض",
+        "to": "إلى",
+        "of": "من",
+        "noProducts": "لا توجد منتجات",
+        "noProductsFounded": "لا توجد منتجات متاحة",
+        "tryAdjustingSearch": "حاول تعديل بحثك أو استخدام الفلاتر للعثور على ما تبحث عنه.",
+        "clearAllFilters": "مسح جميع الفلاتر والبحث",
+        "selectCountry": "اختر دولة",
+        "welcome": "مرحبًا بك في التطبيق",
+        "exclusiveDeals": "عروض حصرية",
+        "newArrivals": "الوافدون الجدد",
+        "joinCommunity": "انضم إلى مجتمعنا",
+        "browseProducts": "تصفح أحدث منتجاتنا",
+        "todayOffers": "تحقق من عروض اليوم",
+        "exploreProducts": "استكشف أحدث المنتجات",
+        "signUpDeals": "سجل للحصول على عروض حصرية",
+        "start": "ابدأ"
       },
       "account": {
         "changePassword": "تغيير كلمة المرور",
@@ -66,7 +102,9 @@
         "updating": "جارٍ التحديث",
         "updateDetails": "تحديث التفاصيل",
         "updateSuccess": "تم التحديث بنجاح",
-        "failed": "فشل في التحديث"
+        "failed": "فشل في التحديث",
+
+          "wishlist": "قائمة الرغبات"
       },
       "shop": {
         "shopByCategory": "تسوق حسب الفئة",
@@ -120,7 +158,17 @@
         "searchProducts": "البحث عن المنتجات...",
         "couponCode": "رمز القسيمة",
         "downloadsRemaining": "التحميلات المتبقية",
-        "expires": "ينتهي"
+        "expires": "ينتهي",
+
+
+        "lowStock": "المخزون منخفض",
+        "save": "حفظ",
+        "popularProducts": "المنتجات الرائجة",
+        "saleProductsOnly": "المنتجات المخفضة فقط",
+        "onlyShowProductsOnSale": "عرض المنتجات المخفضة فقط",
+    "products": "المنتجات",
+"topRated": "الأعلى تقييماً"
+
       },
       "billing": {
         "billing": "الفوترة",
@@ -148,6 +196,20 @@
         "invalidPasswordResetLink": "رابط إعادة تعيين كلمة المرور غير صالح.",
         "general": "حدث خطأ ما",
         "noOrder": "لم نتمكن من العثور على طلبك. يرجى المحاولة لاحقًا."
+      },
+
+
+      "storeSettings": {
+        "showMoveToWishlist": "نقل إلى قائمة الرغبات"
+      },
+      "menu": {
+        "shop": "تسوق",
+        "category": "فئة",
+        "cart": "سلة التسوق",
+        "me": "أنا",
+        "allProducts": "جميع المنتجات",
+        "wishlist": "قائمة الرغبات",
+        "myAccount": "حسابي"
       }
     }
   }

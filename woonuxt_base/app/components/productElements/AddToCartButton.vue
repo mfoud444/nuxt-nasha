@@ -2,6 +2,7 @@
 const { cart } = useCart();
 const props = defineProps({
   disabled: { type: Boolean, default: false },
+  onlyIcon: { type: Boolean, default: false },
 });
 const isLoading = ref(false);
 const { t } = useI18n();
@@ -16,12 +17,17 @@ watch(cart, (val) => {
 <template>
   <button
     type="submit"
-    class="rounded-lg flex font-bold bg-gray-800 text-white text-center min-w-[150px] p-2.5 gap-4 items-center justify-center focus:outline-none"
+    class="rounded-lg flex font-bold bg-gray-800 text-white text-center  p-1 gap-4 items-center justify-center px-4 focus:outline-none"
     :class="{ disabled: disabled }"
     :disabled="disabled"
     @click="isLoading = true">
-    <span>{{ addToCartButtonText }}</span>
-    <LoadingIcon v-if="isLoading" stroke="4" size="12" color="#fff" />
+
+    <span v-if="!onlyIcon">{{ addToCartButtonText }}</span>
+    <SvgIcon v-if="onlyIcon && !isLoading" icon="material-symbols:add-shopping-cart-rounded"   class="text-xl text-white dark:text-black"/>
+    <div v-if="isLoading" class="p-1">
+      <LoadingIcon  stroke="4" size="12" color="#fff" />
+    </div>
+    
   </button>
 </template>
 

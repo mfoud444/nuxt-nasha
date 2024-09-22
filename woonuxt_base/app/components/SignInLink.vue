@@ -3,7 +3,6 @@ const { viewer, avatar, logoutUser, isPending } = useAuth();
 const linkTitle = computed<string>(() => viewer.value?.username || 'Sign In');
 const wishlistLink = computed<string>(() => (viewer.value ? '/my-account?tab=wishlist' : '/wishlist'));
 </script>
-
 <template>
   <NuxtLink to="/my-account" :title="linkTitle" class="hidden sm:inline-flex aspect-square items-center">
     <Transition name="pop-in" mode="out-in">
@@ -15,12 +14,12 @@ const wishlistLink = computed<string>(() => (viewer.value ? '/my-account?tab=wis
           height="22"
           :alt="linkTitle" />
         <div class="account-dropdown">
-          <NuxtLink :to="wishlistLink" class="hover:bg-gray-100"><Icon name="ion:heart-outline" size="16" /><span>Wishlist</span></NuxtLink>
-          <NuxtLink to="/my-account" class="hover:bg-gray-100"><Icon name="ion:person-outline" size="16" /><span>My Account</span></NuxtLink>
+          <NuxtLink :to="wishlistLink" class="hover:bg-gray-100"><Icon name="ion:heart-outline" size="16" /><span>{{ $t('messages.account.wishlist') }}</span></NuxtLink>
+          <NuxtLink to="/my-account" class="hover:bg-gray-100"><Icon name="ion:person-outline" size="16" /><span>{{ $t('messages.account.myAccount') }}</span></NuxtLink>
           <button class="text-red-600 hover:bg-red-50" @click.prevent="logoutUser">
             <LoadingIcon v-if="isPending" size="16" />
             <Icon v-else name="ion:log-out-outline" size="16" />
-            <span>Logout</span>
+            <span>{{ $t('messages.account.logout') }}</span>
           </button>
         </div>
       </span>
@@ -28,6 +27,7 @@ const wishlistLink = computed<string>(() => (viewer.value ? '/my-account?tab=wis
     </Transition>
   </NuxtLink>
 </template>
+
 
 <style scoped lang="postcss">
 .pop-in-enter-active,

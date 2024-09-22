@@ -11,14 +11,14 @@ export function useCheckout() {
   });
 
   const isProcessingOrder = useState<boolean>('isProcessingOrder', () => false);
-
+  const isLoading = useState<boolean>('isLoading', () => false);
   // if Country or State are changed, calculate the shipping rates again
   async function updateShippingLocation() {
     const { customer, viewer } = useAuth();
     const { isUpdatingCart, refreshCart } = useCart();
 
     isUpdatingCart.value = true;
-
+    isLoading.value = true; 
     try {
       const { updateCustomer } = await GqlUpdateCustomer({
         input: {
@@ -31,6 +31,8 @@ export function useCheckout() {
       if (updateCustomer) refreshCart();
     } catch (error) {
       console.error(error);
+    } finally {
+      isLoading.value = false; // Reset loading state
     }
   }
 
@@ -132,9 +134,13 @@ export function useCheckout() {
 
       alert(errorMessage);
       return null;
+    } finally {
+    
+      isProcessingOrder.value = false;
+      console.log("isProcessingOrder.value", isProcessingOrder.value)
     }
 
-    isProcessingOrder.value = false;
+   
   };
 
   return {
@@ -142,5 +148,6 @@ export function useCheckout() {
     isProcessingOrder,
     proccessCheckout,
     updateShippingLocation,
+    isLoading
   };
 }

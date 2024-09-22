@@ -1,15 +1,19 @@
 <script setup lang="ts">
 const { isShowingSearch } = useSearching();
+import { Capacitor } from '@capacitor/core';
+
+const isNative = ref(Capacitor.isNativePlatform());
+
 </script>
 
 <template>
-  <header class="sticky  top-0  z-40 myglass my-2 shadow-sm py-2  shadow-light-500">
+  <header  class="myglass my-2 mt-0 shadow-sm py-2  shadow-light-500 sticky top-0 z-40">
     <div class="container flex items-center justify-between py-4">
-      <div class="flex items-center">
-        <MenuTrigger class="lg:hidden" />
+      <div  class="flex items-center">
+        <MenuTrigger  class="lg:hidden" />
         <Logo class="md:w-[160px]" />
       </div>
-      <MainMenu class="items-center hidden gap-6 text-sm text-gray-500 lg:flex lg:px-4" />
+      <MainMenu  class="items-center hidden gap-6 text-sm text-gray-500 lg:flex lg:px-4" />
       <div class="flex justify-end items-center md:w-[160px] flex-1 ml-auto gap-4 md:gap-6">
         <ProductSearch class="hidden sm:inline-flex max-w-[320px] w-[60%]" />
         <SearchTrigger />

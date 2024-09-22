@@ -1,7 +1,0 @@
-{
-  "name": "woonuxt",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "vue"
-}

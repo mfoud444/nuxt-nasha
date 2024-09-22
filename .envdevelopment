@@ -1,5 +1,5 @@
 # GraphQL endpoint
-GQL_HOST="http://localhost/wordpress/index.php?graphql"
+GQL_HOST="http://192.168.99.176/wordpress/index.php?graphql"
 # If you have the WooNuxt-Settings plugin installed this is all you need. Everything else is optional and can be configured in the WordPress admin under Settings > WooNuxt. 
 # GQL_HOST="https://nashast.store/graphql"
 
@@ -15,4 +15,4 @@ NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_abcdefghijklmnopqrstuvwxyz"
 PRIMARY_COLOR="#ff0000"
 
 # Needed for nuxt-image to work with external images
-NUXT_IMAGE_DOMAINS="example.com, example.org"
+NUXT_IMAGE_DOMAINS="http://192.168.99.100:3000"

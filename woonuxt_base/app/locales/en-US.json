@@ -33,7 +33,47 @@
       "goHome": "Go Home",
       "newsletter": "Newsletter",
       "customerService": "Customer Service",
-      "processing": "Processing"
+      "processing": "Processing",
+
+
+      "news": "News",
+      "readLaunchPost": "Read the launch post from here",
+      "startShopping": "Start Shopping Now with Nasha Store.",
+      "shopDescription": "Nasha Store offers a wide range of products from electronics to fashion. Enjoy a seamless shopping experience.",
+       "downloadDirect": "Download Direct",
+
+       "siteName": "Nasha Store",
+       "shortDescription": "Your go-to online store for quality products at great prices.",
+       "description": "Nasha Store offers a wide range of products from electronics to fashion. Enjoy a seamless shopping experience with features like product reviews, filters, and related product recommendations. Discover our curated collections and shop with confidence at competitive prices.",
+
+       "freeShipping": "Free Shipping",
+       "freeShippingDescription": "Free shipping on order over €50",
+       "peaceOfMind": "Peace of Mind",
+       "moneyBackGuarantee": "30 days money back guarantee",
+       "paymentSecure": "100% Payment Secure",
+       "securePaymentDescription": "Your payment are safe with us.",
+       "support": "Support 24/7",
+       "supportDescription": "24/7 Online support",
+       "noProductsFound": "Could not fetch products from your store. Please check your configuration.",
+          "refreshList": "Refresh list",
+          "showing": "Showing",
+          "to": "to",
+          "of": "of",
+          "noProducts": "No products",
+          "noProductsFounded": "No products found",
+          "tryAdjustingSearch": "Try adjusting your search or filter to find what you're looking for.",
+          "clearAllFilters": "Clear all filters and search",
+            "selectCountry": "Select a country",
+            "welcome": "Welcome to App",
+            "exclusiveDeals": "Exclusive Deals",
+            "newArrivals": "New Arrivals",
+            "joinCommunity": "Join Our Community",
+            "browseProducts": "Browse our latest products",
+            "todayOffers": "Check out today’s offers",
+            "exploreProducts": "Explore the newest products",
+            "signUpDeals": "Sign up for exclusive deals",
+            "start": "Start"
+      
     },
     "account": {
       "changePassword": "Change Password",
@@ -66,7 +106,11 @@
       "updating": "Updating",
       "updateDetails": "Update Details",
       "updateSuccess": "Updated successfully",
-      "failed": "Failed to update"
+      "failed": "Failed to update",
+
+      "wishlist": "Wishlist"
+    
+
     },
     "shop": {
       "shopByCategory": "Shop by Category",
@@ -120,7 +164,15 @@
       "searchProducts": "Search Products...",
       "couponCode": "Coupon Code",
       "downloadsRemaining": "Downloads remaining",
-      "expires": "Expires"
+      "expires": "Expires",
+
+         "lowStock": "Low Stock", 
+      "save": "Save",
+        "popularProducts": "Popular Products",
+          "saleProductsOnly": "Sale Products Only",
+      "onlyShowProductsOnSale": "Only show products on sale",
+      "products":"Products",
+      "topRated":"Top Rated"
     },
     "billing": {
       "billing": "Billing",
@@ -148,6 +200,21 @@
       "invalidPasswordResetLink": "Password reset link is invalid.",
       "general": "Something went wrong",
       "noOrder": "We could not find your order. Please try again later."
+    }
+    ,
+
+
+    "storeSettings": {
+      "showMoveToWishlist": "Move to Wishlist"
+    },
+    "menu": {
+      "shop": "Shop",
+      "category": "Category",
+      "cart": "Cart",
+      "me": "Me",
+      "allProducts": "All Products",
+      "wishlist": "Wishlist",
+      "myAccount": "My Account"
     }
   }
 }

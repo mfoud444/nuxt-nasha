@@ -34,6 +34,9 @@
       "newsletter": "Boletín",
       "customerService": "Servicio al cliente",
       "processing": "Procesando"
+
+     
+    
     },
     "account": {
       "changePassword": "Cambiar contraseña",
@@ -67,6 +70,7 @@
       "updateDetails": "Actualizar detalles",
       "updateSuccess": "Actualizado con éxito",
       "failed": "Error al actualizar"
+          
     },
     "shop": {
       "shopByCategory": "Comprar por categoría",
@@ -120,7 +124,10 @@
       "searchProducts": "Buscar productos...",
       "couponCode": "Código de cupón",
       "downloadsRemaining": "Descargas restantes",
-      "expires": "Expira"
+      "expires": "Expira",
+     
+      "lowStock": "Low Stock", 
+      "save": "Save"
     },
     "billing": {
       "billing": "Facturación",
@@ -148,6 +155,15 @@
       "invalidPasswordResetLink": "El enlace de restablecimiento de contraseña no es válido.",
       "general": "Ha ocurrido un error",
       "noOrder": "No hemos podido encontrar tu pedido. Por favor, inténtalo de nuevo más tarde."
+    },
+
+
+    "storeSettings": {
+      "showMoveToWishlist": "Move to Wishlist"
     }
+
+
+
+
   }
 }

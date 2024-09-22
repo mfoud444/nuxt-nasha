@@ -1,4 +1,6 @@
+import { useMessage } from 'naive-ui';
 import pkg from '../../../woonuxt_base/package.json';
+import { ref } from 'vue';
 
 // A collection of helper functions.
 export function useHelpers() {
@@ -13,6 +15,10 @@ export function useHelpers() {
   const isDev: boolean = process.env.NODE_ENV === 'development';
   const fallbackImage = '/images/placeholder.jpg';
 
+  const currentPage = ref<string>('shop');
+  function updateCurrentPage(page:string): void {
+    currentPage.value = page
+  }
   /**
    * Toggles the mobile menu.
    */
@@ -187,9 +193,21 @@ export function useHelpers() {
     if (!isDev && !route.query.debug) return;
     const errorMessage = error?.gqlErrors?.[0]?.message;
     if (errorMessage) {
+      // const message = useMessage();
+      // message.error("errorMessage");
+    
       console.error(errorMessage);
     }
   };
+
+
+    /**
+   * Check whether the currently running platform is native (iOS, Android).
+   * @returns {boolean} True if the platform is native, false otherwise.
+   */
+    // function isNative(): boolean {
+    //   return Capacitor.isNativePlatform();
+    // }
 
   return {
     isShowingMobileMenu,
@@ -216,5 +234,8 @@ export function useHelpers() {
     stripHtml,
     debounce,
     logGQLError,
+    currentPage,
+    updateCurrentPage
+    // isNative
   };
 }

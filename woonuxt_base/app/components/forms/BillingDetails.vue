@@ -1,6 +1,6 @@
 <script setup>
 const { allowedCountries } = await GqlGetStates({ country: 'IE' });
-const { updateShippingLocation } = useCheckout();
+const { updateShippingLocation, isLoading } = useCheckout();
 const props = defineProps({
   modelValue: { type: Object, required: true },
   sameAsShippingAddress: { type: Boolean, default: true },
@@ -10,7 +10,7 @@ const billing = toRef(props, 'modelValue');
 </script>
 
 <template>
-  <div class="grid w-full gap-4 lg:grid-cols-2">
+  <div  class="grid w-full gap-4 lg:grid-cols-2">
     <div class="w-full">
       <label for="first-name">{{ $t('messages.billing.firstName') }}</label>
       <input v-model="billing.firstName" placeholder="John" type="text" required />

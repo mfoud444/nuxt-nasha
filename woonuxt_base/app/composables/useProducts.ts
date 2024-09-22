@@ -3,7 +3,7 @@ let allProducts = [] as Product[];
 export function useProducts() {
   // Declare the state variables and the setter functions
   const products = useState<Product[]>('products');
-
+  const loading = ref(true);
   /**
    * Sets the products state variable and the allProducts variable.
    * @param {Product[]} newProducts - The new products to set.
@@ -12,6 +12,7 @@ export function useProducts() {
     if (!Array.isArray(newProducts)) throw new Error('Products must be an array.');
     products.value = newProducts ?? [];
     allProducts = JSON.parse(JSON.stringify(newProducts));
+    loading.value = false;
   }
 
   const updateProductList = async (): Promise<void> => {
@@ -42,5 +43,5 @@ export function useProducts() {
     }
   };
 
-  return { products, allProducts, setProducts, updateProductList };
+  return { products, allProducts, setProducts, updateProductList , loading};
 }

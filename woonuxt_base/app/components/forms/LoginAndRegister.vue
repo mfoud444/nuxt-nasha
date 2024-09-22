@@ -1,54 +1,6 @@
-<template>
-  <div class="max-w-lg mx-auto my-16 min-h-[600px] lg:my-24">
-    <div class="flex flex-col items-center">
-      <Logo class="mb-6 scale-125" />
-      <h1 class="text-xl font-semibold lg:text-3xl">{{ formTitle }}</h1>
-      <div v-if="formView === 'login'" class="my-2 text-center">
-        {{ $t('messages.account.noAccount') }}
-        <a class="font-semibold cursor-pointer text-primary" @click="navigate('register')"> {{ $t('messages.account.accountRegister') }} </a>.
-      </div>
-      <div v-if="formView === 'register'" class="my-2 text-center">
-        {{ $t('messages.account.hasAccount') }}
-        <a class="font-semibold cursor-pointer text-primary" @click="navigate('login')"> {{ $t('messages.general.please') }} {{ $t('messages.account.accountLogin') }} </a>.
-      </div>
-    </div>
-
-    <form class="mt-6" @submit.prevent="handleFormSubmit(userInfo)">
-      <label v-if="formView === 'register' || formView === 'forgotPassword'" for="email">
-        {{ emailLabel }}
-        <span class="text-red-500">*</span> <br />
-        <input id="email" v-model="userInfo.email" :placeholder="inputPlaceholder.email" type="text" required />
-      </label>
-      <p v-if="formView === 'forgotPassword'" class="text-sm text-gray-500">{{ $t('messages.account.enterEmailOrUsernameForReset') }}</p>
-      <div v-if="formView !== 'forgotPassword'">
-        <label for="username">
-          {{ usernameLabel }}
-          <span class="text-red-500">*</span> <br />
-          <input id="username" v-model="userInfo.username" :placeholder="inputPlaceholder.username" type="text" required />
-        </label>
-        <label for="password">
-          {{ passwordLabel }} <span class="text-red-500">*</span> <br />
-          <PasswordInput id="password" className="border rounded-lg w-full p-3 px-4 bg-white" v-model="userInfo.password" :placeholder="inputPlaceholder.password"
-          :required="true" />
-        </label>
-      </div>
-      <Transition name="scale-y" mode="out-in">
-        <div v-if="message" class="my-4 text-sm text-green-500" v-html="message"></div>
-      </Transition>
-      <Transition name="scale-y" mode="out-in">
-        <div v-if="errorMessage" class="my-4 text-sm text-red-500" v-html="errorMessage"></div>
-      </Transition>
-      <button class="flex items-center justify-center gap-4 mt-4 text-lg">
-        <LoadingIcon v-if="isPending" stroke="4" size="16" color="#fff" />
-        <span>{{ buttonText }}</span>
-      </button>
-    </form>
-    <div class="my-8 text-center cursor-pointer" @click="navigate('forgotPassword')" v-if="formView === 'login'">{{ $t('messages.account.forgotPassword') }}</div>
-    <div class="my-8 text-center cursor-pointer" @click="navigate('login')" v-if="formView === 'forgotPassword'">{{ $t('messages.account.backToLogin') }}</div>
-  </div>
-</template>
 
 <script setup lang="ts">
+
 const { t } = useI18n();
 const route = useRoute();
 const router = useRouter();
@@ -169,7 +121,63 @@ const inputPlaceholder = computed(() => {
   };
 });
 
+const { storeSettings } = useAppConfig();
+
+const isNative = storeSettings.isNative;
 </script>
+
+<template>
+  <div class="max-w-lg mx-auto my-16   lg:my-24"
+  :class='isNative ? "mt-12 " : ""'
+  >
+    <div class="flex flex-col items-center">
+      <Logo v-if="!isNative" class="mb-6 scale-125" />
+      <h1 class="text-xl font-semibold lg:text-3xl">{{ formTitle }}</h1>
+      <div v-if="formView === 'login'" class="my-2 text-center">
+        {{ $t('messages.account.noAccount') }}
+        <a class="font-semibold cursor-pointer text-primary" @click="navigate('register')"> {{ $t('messages.account.accountRegister') }} </a>.
+      </div>
+      <div v-if="formView === 'register'" class="my-2 text-center">
+        {{ $t('messages.account.hasAccount') }}
+        <a class="font-semibold cursor-pointer text-primary" @click="navigate('login')"> {{ $t('messages.general.please') }} {{ $t('messages.account.accountLogin') }} </a>.
+      </div>
+    </div>
+
+    <form class="mt-6" @submit.prevent="handleFormSubmit(userInfo)">
+      <label v-if="formView === 'register' || formView === 'forgotPassword'" for="email">
+        {{ emailLabel }}
+        <span class="text-red-500">*</span> <br />
+        <input id="email" v-model="userInfo.email" :placeholder="inputPlaceholder.email" type="text" required />
+      </label>
+      <p v-if="formView === 'forgotPassword'" class="text-sm text-gray-500">{{ $t('messages.account.enterEmailOrUsernameForReset') }}</p>
+      <div v-if="formView !== 'forgotPassword'">
+        <label for="username">
+          {{ usernameLabel }}
+          <span class="text-red-500">*</span> <br />
+          <input id="username" v-model="userInfo.username" :placeholder="inputPlaceholder.username" type="text" required />
+        </label>
+        <label for="password">
+          {{ passwordLabel }} <span class="text-red-500">*</span> <br />
+          <PasswordInput id="password" className="border rounded-lg w-full p-3 px-4 bg-white" v-model="userInfo.password" :placeholder="inputPlaceholder.password"
+          :required="true" />
+        </label>
+      </div>
+      <Transition name="scale-y" mode="out-in">
+        <div v-if="message" class="my-4 text-sm text-green-500" v-html="message"></div>
+      </Transition>
+      <Transition name="scale-y" mode="out-in">
+        <div v-if="errorMessage" class="my-4 text-sm text-red-500" v-html="errorMessage"></div>
+      </Transition>
+      <button class="flex items-center justify-center gap-4 mt-4 text-lg">
+        <LoadingIcon v-if="isPending" stroke="4" size="16" color="#fff" />
+        <span>{{ buttonText }}</span>
+      </button>
+    </form>
+    <div class="my-8 text-center cursor-pointer" @click="navigate('forgotPassword')" v-if="formView === 'login'">{{ $t('messages.account.forgotPassword') }}</div>
+    <div class="my-8 text-center cursor-pointer" @click="navigate('login')" v-if="formView === 'forgotPassword'">{{ $t('messages.account.backToLogin') }}</div>
+  </div>
+</template>
+
 
 <style lang="postcss" scoped>
 input,

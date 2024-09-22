@@ -1,4 +1,5 @@
 import type { AddToCartInput } from '#gql';
+import { useDialog } from 'naive-ui';
 
 /**
  * @name useCart
@@ -12,8 +13,10 @@ export function useCart() {
   const paymentGateways = useState<PaymentGateways>('paymentGateways', () => null);
   const { logGQLError } = useHelpers();
 
+  const isLoading = useState<boolean>('isLoading', () => false);
   // Refesh the cart from the server
   async function refreshCart() {
+    isLoading.value = true; 
     try {
       const { cart, customer, viewer, paymentGateways } = await GqlGetCart();
 
@@ -27,6 +30,8 @@ export function useCart() {
     } catch (error: any) {
       logGQLError(error);
       return { cart: null, customer: null, viewer: null, paymentGateways: null };
+    } finally {
+      isLoading.value = false; // Reset loading state
     }
   }
 
@@ -46,15 +51,19 @@ export function useCart() {
   // add an item to the cart
   async function addToCart(input: AddToCartInput): Promise<void> {
     isUpdatingCart.value = true;
-
+  
+   
     try {
+      // useGqlHost('<host>')
       const { addToCart } = await GqlAddToCart({ input });
       cart.value = addToCart?.cart ?? null;
       // Auto open the cart when an item is added to the cart if the setting is enabled
       const { storeSettings } = useAppConfig();
       if (storeSettings.autoOpenCart && !isShowingCart.value) toggleCart(true);
     } catch (error: any) {
+    
       logGQLError(error);
+      throw(error)
     }
   }
 
@@ -142,5 +151,6 @@ export function useCart() {
     updateShippingMethod,
     applyCoupon,
     removeCoupon,
+    isLoading, 
   };
 }

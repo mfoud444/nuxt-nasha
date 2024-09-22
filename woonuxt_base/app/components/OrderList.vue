@@ -39,7 +39,7 @@ const goToOrder = (orderNumber: string): void => {
       </table>
       <div class="text-center flex justify-center w-full mt-8">
         <button type="button" @click="refresh" class="flex items-center gap-1 text-sm leading-none hover:bg-gray-50 p-2 rounded">
-          <span>Reresh list</span>
+          <span>{{ $t('messages.general.refreshList') }}</span>
           <Icon name="ion:refresh-outline" />
         </button>
       </div>

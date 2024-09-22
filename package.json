@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --host",
+    "dev": "nuxt dev -p 3001 --host",
     "dev:ssl": "NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev --https --ssl-cert localhost.pem --ssl-key localhost-key.pem",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -11,39 +11,52 @@
     "serve": "nuxi generate && npx serve .output/public -l 8080"
   },
   "dependencies": {
+    "@capacitor-community/safe-area": "^6.0.0-alpha.7",
     "@capacitor/android": "6.1.2",
     "@capacitor/app": "6.0.1",
-    "@capacitor/core": "6.1.2",
+    "@capacitor/core": "^6.1.2",
     "@capacitor/haptics": "6.0.1",
     "@capacitor/ios": "^6.1.2",
     "@capacitor/keyboard": "6.0.2",
+    "@capacitor/splash-screen": "^6.0.2",
     "@capacitor/status-bar": "6.0.1",
+    "@pinia/nuxt": "^0.5.4",
     "@stripe/stripe-js": "^4.1.0",
+    "@ucstu/nuxt-naive-ui": "^2.0.11",
+    "@vicons/ionicons5": "^0.12.0",
     "@vueform/slider": "^2.1.10",
-    "@vueuse/core": "^10.11.0",
+    "@vueuse/core": "^11.0.3",
+    "capacitor-plugin-safe-area": "^3.0.3",
+    "pinia": "^2.2.2",
     "unplugin-auto-import": "^0.17.1",
     "unplugin-vue-components": "^0.27.4"
   },
   "devDependencies": {
+    "@bg-dev/nuxt-naiveui": "^2.0.0-rc.1",
     "@capacitor/assets": "^3.0.5",
-    "@capacitor/cli": "6.1.2",
+    "@capacitor/cli": "^6.1.2",
+    "@iconify-json/hugeicons": "^1.2.0",
     "@iconify-json/ion": "^1.2.0",
     "@nuxt/icon": "^1.2.0",
     "@nuxt/image": "1.7.0",
+    "@nuxt/schema": "^3.13.1",
     "@nuxtjs/i18n": "^8.3.1",
-    "@nuxtjs/ionic": "^0.15.1",
     "@nuxtjs/tailwindcss": "^6.12.1",
     "@tailwindcss/typography": "^0.5.13",
+    "@types/node": "^22.5.5",
     "less": "^4.2.0",
     "less-loader": "^12.2.0",
     "naive-ui": "^2.39.0",
     "nuxt": "^3.12.4",
-    "nuxt-graphql-client": "^0.2.35",
+    "nuxt-graphql-client": "^0.2.36",
     "nuxtjs-naive-ui": "^1.0.2",
     "prettier": "^3.3.3",
+    "typescript": "^5.6.2",
+    "vite-plugin-terminal": "^1.2.0",
     "woonuxt-settings": "^1.0.58"
   },
   "overrides": {
-    "sharp": "0.32.6"
+    "sharp": "0.32.6",
+    "vue": "latest"
   }
 }

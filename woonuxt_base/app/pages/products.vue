@@ -39,5 +39,5 @@ useHead({
       <ProductGrid />
     </div>
   </div>
-  <NoProductsFound v-else>Could not fecth products from your store. Please check your configuration.</NoProductsFound>
+  <NoProductsFound v-else>{{ $t('messages.general.noProductsFound') }}</NoProductsFound>
 </template>
