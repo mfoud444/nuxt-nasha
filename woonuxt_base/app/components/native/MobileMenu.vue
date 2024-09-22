@@ -5,20 +5,20 @@ import { NIcon, type MenuOption } from 'naive-ui';
 import { Icon } from '@iconify/vue';
 const router = useRouter();
 const activeKey = ref<string>('shop');
-function handleMenuItemClick(key: string) {
+ function handleMenuItemClick(key: string) {
   toggleMobileMenu(false)
   switch (key) {
     case 'shop':
       router.push({ path: "/" }); 
       break;
     case 'category':
-      router.push({ path:'/categories'}); 
+     router.push({ path:'/categories'}); 
       break;
     case 'products':
-      router.push({ path:'/products'}); 
+     router.push({ path:'/products'}); 
       break;
     case 'wishlist':
-      router.push({ path: "/wishlist" }); 
+     router.push({ path: "/wishlist" }); 
       break;
     case 'my-account':
       router.push({ path: '/my-account' }); 
@@ -63,21 +63,21 @@ const menuOptions: MenuOption[] = [
   }
 ];
 
-const route = useRoute();
-watch(route, (newRoute) => {
-  if (newRoute.path === '/') {
-    activeKey.value = 'shop';
-  } else if (newRoute.path === '/categories') {
-    activeKey.value = 'category';
-  } else if (newRoute.path === '/products' || newRoute.path === '/checkout') {
-    activeKey.value = 'products';
-  } else if (newRoute.path === '/wishlist') {
-    activeKey.value = 'wishlist';
+// const route = useRoute();
+// watch(route, (newRoute) => {
+//   if (newRoute.path === '/') {
+//     activeKey.value = 'shop';
+//   } else if (newRoute.path === '/categories') {
+//     activeKey.value = 'category';
+//   } else if (newRoute.path === '/products' || newRoute.path === '/checkout') {
+//     activeKey.value = 'products';
+//   } else if (newRoute.path === '/wishlist') {
+//     activeKey.value = 'wishlist';
   
-  } else if (newRoute.path === '/my-account') {
-    activeKey.value = 'my-account';
-  }
-}, { immediate: true });  // Run immediately on component mount
+//   } else if (newRoute.path === '/my-account') {
+//     activeKey.value = 'my-account';
+//   }
+// }, { immediate: true });  
 
 </script>
 

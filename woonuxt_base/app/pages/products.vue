@@ -27,6 +27,7 @@ useHead({
 </script>
 
 <template>
+  <main>
   <div class="container flex items-start gap-16" v-if="allProducts.length">
     <Filters v-if="storeSettings.showFilters" />
 
@@ -40,4 +41,5 @@ useHead({
     </div>
   </div>
   <NoProductsFound v-else>{{ $t('messages.general.noProductsFound') }}</NoProductsFound>
+</main>
 </template>

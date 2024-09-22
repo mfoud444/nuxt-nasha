@@ -6,7 +6,7 @@ const router = useRouter();
 const activeKey = ref<string>('shop');
 const { currentPage,updateCurrentPage} = useHelpers();
 const { t } = useI18n();
-const route = useRoute(); 
+ 
 function handleMenuItemClick(key: string) {
   switch (key) {
     case 'shop':
@@ -50,18 +50,18 @@ const menuOptions: MenuOption[] = [
     key: 'me',
   },
 ];
-
-watch(route, (newRoute) => {
-  if (newRoute.path === '/') {
-    activeKey.value = 'shop';
-  } else if (newRoute.path === '/categories') {
-    activeKey.value = 'category';
-  } else if (newRoute.path === '/cart' || newRoute.path === '/checkout') {
-    activeKey.value = 'cart';
-  } else if (newRoute.path === '/my-account') {
-    activeKey.value = 'me';
-  }
-}, { immediate: true });  // Run immediately on component mount
+// const route = useRoute();
+// watch(route, (newRoute) => {
+//   if (newRoute.path === '/') {
+//     activeKey.value = 'shop';
+//   } else if (newRoute.path === '/categories') {
+//     activeKey.value = 'category';
+//   } else if (newRoute.path === '/cart' || newRoute.path === '/checkout') {
+//     activeKey.value = 'cart';
+//   } else if (newRoute.path === '/my-account') {
+//     activeKey.value = 'me';
+//   }
+// }, { immediate: true });  // Run immediately on component mount
 
 </script>
 

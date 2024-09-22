@@ -90,7 +90,7 @@ const isNative = storeSettings.isNative;
 
 <template>
 
-  <template v-if="skip && isNative">
+ <template v-if="skip && isNative">
     <div class="m-0 space-y-3 h-screen container">
       <button
         type="button"
@@ -163,17 +163,17 @@ const isNative = storeSettings.isNative;
     </div>
   </template>
 
-  <template v-else>
+  <template v-else> 
 
 
 
-    <div dir="rtl" :class=" isNative ? 'flex flex-col h-screen overflow-hidden' : 'overflow-auto '">
+    <div dir="ltr" :class=" isNative ? 'flex flex-col h-screen overflow-hidden' : 'overflow-auto '">
 
-      <PhoneHeader v-if="isNative" />
-      <LazyAppHeader v-if="!isNative" />
-     
+      <div>
+        <PhoneHeader v-if="isNative" />
+        <LazyAppHeader v-if="!isNative" />
 
-      <Transition name="slide-from-right">
+        <Transition name="slide-from-right">
         <LazyCart v-if="isShowingCart" />
       </Transition>
 
@@ -181,30 +181,37 @@ const isNative = storeSettings.isNative;
         <MobileMenu v-if="isShowingMobileMenu" />
       </Transition>
 
-
-      <div 
-      class="overflow-x-hidden" 
-      :class="isNative ? 'flex-1 flex flex-col py-1 overflow-scroll' : ''">
-
-        <NuxtLoadingIndicator>
-
-        </NuxtLoadingIndicator>
-
-        <!-- page-key="static" -->
-        <NuxtPage  />
-        <Transition name="fade">
+      <Transition name="fade">
           <div
             v-if="isShowingCart || isShowingMobileMenu"
             class="bg-black opacity-25 inset-0 z-40 fixed"
             @click="closeCartAndMenu"
           />
         </Transition>
+      <NuxtLoadingIndicator/>
+      </div>
+  
+     
+
+
+
+
+      <div 
+      class="overflow-x-hidden min-h-[500px]" 
+      :class="isNative ? 'flex-1  flex flex-col py-1 overflow-scroll' : ''">
+
+        
+      <NuxtPage />
+
+        <!-- page-key="static" -->
+     
       </div>
 
+<div>
+  <LazyPhoneFooter v-if="isNative" />
+<LazyAppFooter v-if="!isNative" />
+</div>
 
-      <LazyPhoneFooter v-if="isNative" />
-
-      <LazyAppFooter v-if="!isNative" />
 
     </div>
 
