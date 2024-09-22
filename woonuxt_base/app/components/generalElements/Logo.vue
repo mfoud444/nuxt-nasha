@@ -10,7 +10,7 @@ const isNative = storeSettings.isNative;
 </script>
 
 <template>
-  <component :is="isNative ? 'div' : 'NuxtLink'" v-bind="!isNative && { to: '/' }">
+  <component class=" cursor-pointer" :is="!isNative ? 'div' : 'NuxtLink'" v-bind="isNative && { to: '/' }">
     <img v-if="logoUrl" :src="logoUrl" alt="Logo" class="object-contain rounded h-10" />
     <div v-else class="flex items-center gap-2 text-lg font-bold">
       <img v-if="isNative" class=" rounded-full" :src="faviconUrl" alt="Logo" width="38" height="42" />

@@ -35,10 +35,10 @@ async function fetchCategories() {
     setProducts([]); // Set products to an empty array in case of error
   }
 }
-await fetchCategories();
-// onMounted(async () => {
-//   await fetchCategories();
-// });
+// fetchCategories();
+onMounted(async () => {
+  await fetchCategories();
+});
 // fetchCategories()
 const { t } = useI18n();
 useSeoMeta({

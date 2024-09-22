@@ -167,7 +167,7 @@ const isNative = storeSettings.isNative;
 
 
 
-    <div :class=" isNative ? 'flex flex-col h-screen overflow-hidden' : 'overflow-auto '">
+    <div dir="rtl" :class=" isNative ? 'flex flex-col h-screen overflow-hidden' : 'overflow-auto '">
 
       <PhoneHeader v-if="isNative" />
       <LazyAppHeader v-if="!isNative" />
