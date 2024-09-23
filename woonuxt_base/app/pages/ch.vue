@@ -144,11 +144,16 @@ function prev() {
 
       <template v-else>
   
+
+
+        
      
         <form
           class=" mx-4  flex-1 flex flex-col h-full relative"
           @submit.prevent="payNow"
         >
+
+
         <div
             class=" sticky top-0 myglass flex items-center justify-center py-2"
         >
@@ -165,7 +170,7 @@ function prev() {
               </n-step>
               <n-step>
                 <template #icon>
-                  <SvgIcon icon="ion:person"  />
+                  <SvgIcon icon="ion:person" />
                 </template>
               </n-step>
               <n-step>
@@ -175,14 +180,18 @@ function prev() {
               </n-step>
               <n-step>
                 <template #icon>
-                  <SvgIcon icon="ion:checkmark-circle"  />
+                  <SvgIcon icon="ion:checkmark-circle" />
                 </template>
               </n-step>
             </n-steps>
         </div>
+
+
           <div class="grid w-full my-2 max-w-2xl gap-8 checkout-form flex-1">
+
+            <!-- STEP 1 -->
             <div v-if="!viewer && current == 1">
-              <h2 class="w-full my-2 text-2xl font-semibold leading-none">{{ $t('messages.account.emailOrUsername') }}</h2>
+              <h2 class="w-full mb-2 text-2xl font-semibold leading-none">{{ $t('messages.account.emailOrUsername') }}</h2>
               <p class="mt-1 text-sm text-gray-500">{{ $t('messages.account.hasAccount') }} <a
                   href="/my-account"
                   class="text-primary text-semibold"
@@ -248,58 +257,12 @@ function prev() {
               </div>
             </div>
 
+
+               <!-- STEP 2 -->
             <template v-if="current == 2">
               <div>
                 <h2 class="w-full mb-3 text-2xl font-semibold">{{ $t('messages.billing.billingDetails') }}</h2>
              
-
-
-                <!-- <div  class="grid w-full gap-4 lg:grid-cols-2">
-    <div class="w-full">
-      <label for="first-name">{{ $t('messages.billing.firstName') }}</label>
-      <input v-model="customer.billing.firstName" placeholder="John" type="text" required />
-    </div>
-
-    <div class="w-full">
-      <label for="last-name">{{ $t('messages.billing.lastName') }}</label>
-      <input v-model="customer.billing.lastName" placeholder="Doe" type="text" required />
-    </div>
-
-    <div class="w-full col-span-full">
-      <label for="address1">{{ $t('messages.billing.address1') }}</label>
-      <input v-model="customer.billing.address1" placeholder="O'Connell Street" type="text" required />
-    </div>
-
-    <div class="w-full col-span-full">
-      <label for="address2">{{ $t('messages.billing.address2') }}</label>
-      <input v-model="customer.billing.address2" placeholder="Dublin 1" type="text" />
-    </div>
-
-    <div class="w-full">
-      <label for="city">{{ $t('messages.billing.city') }}</label>
-      <input v-model="customer.billing.city" placeholder="Dublin" type="text" required />
-    </div>
-
-    <div class="w-full">
-      <label for="state">{{ $t('messages.billing.state') }}</label>
-      <StateSelect v-model="customer.billing.state" :default-value="billing.state" :country-code="billing.country" @change="updateShippingLocation" />
-    </div>
-
-    <div class="w-full">
-      <label for="country">{{ $t('messages.billing.country') }}</label>
-      <CountrySelect v-model="customer.billing.country" :default-value="billing.country" @change="updateShippingLocation" />
-    </div>
-
-    <div class="w-full">
-      <label for="zip">ZIP ({{ $t('messages.general.optional') }})</label>
-      <input v-model="customer.billing.postcode" placeholder="D01 1234" type="text" />
-    </div>
-
-    <div class="w-full col-span-full">
-      <label for="phone">{{ $t('messages.billing.phone') }} ({{ $t('messages.general.optional') }})</label>
-      <input v-model="customer.billing.phone" placeholder="+353871234567" type="tel" />
-    </div>
-  </div> -->
                 <BillingDetails
                   v-model="customer.billing"
                   :sameAsShippingAddress="orderInput.shipToDifferentAddress"
@@ -338,6 +301,9 @@ function prev() {
               </div>
             </template>
 
+
+
+               <!-- STEP 3 -->
             <template v-if="current == 3">
               <div
                 v-if="paymentGateways.nodes.length"
@@ -358,6 +324,8 @@ function prev() {
               </div>
             </template>
 
+
+               <!-- STEP 4 -->
             <template v-if="current == 4">
               <div>
                 <h2 class="mb-4 text-xl font-semibold">{{ $t('messages.shop.orderNote') }} ({{ $t('messages.general.optional') }})</h2>
@@ -387,7 +355,7 @@ function prev() {
             </template>
           </div>
 
-          <n-space class="sticky bottom-0 text-end">
+          <n-space class="sticky bottom-0 myglass">
               <n-button-group>
                 <n-button @click="prev" :disabled="current ===1 ? true : false">
                   <template #icon>

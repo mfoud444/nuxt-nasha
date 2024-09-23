@@ -43,7 +43,7 @@ onMounted(async () => {
 
 </script>
 <template>
-      <div v-if="isLoading" class="flex flex-col items-center justify-center min-h-[500px]">
+      <div v-if="isLoading" class="flex flex-col items-center justify-center h-full">
       <LoadingIcon />  <!-- Show loading indicator -->
     </div>
   <main v-else class="container">

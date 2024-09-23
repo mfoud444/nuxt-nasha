@@ -22,10 +22,10 @@ export default defineAppConfig({
     showRelatedProducts: true,
     showProductCategoriesOnSingleProduct: true,
     showBreadcrumbOnSingleProduct: true,
-    showMoveToWishlist: true,
+    showMoveToWishlist: false,
     saleBadge: 'percent', // 'percent', 'onSale' or 'hidden'
     // isNative:Capacitor.isNativePlatform(),
-    isNative:false,
+    isNative: true ,
   },
 });
 

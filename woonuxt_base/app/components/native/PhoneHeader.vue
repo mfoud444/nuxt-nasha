@@ -4,7 +4,7 @@ const isNative = ref(Capacitor.isNativePlatform());
 
 </script>
 <template v-if="isNative" >
-    <header  class="sticky top-0 z-40 pb-1 bg-white">
+    <header  class="sticky top-0 z-40  bg-white">
       <div class="container flex items-center  justify-between py-4 pb-2">
         <div  class="flex items-center">
           <Logo class="md:w-[160px]" />

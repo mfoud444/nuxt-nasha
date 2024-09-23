@@ -1,0 +1,7 @@
+# GraphQL endpoint
+GQL_HOST="http://192.168.99.100/wordpress/index.php?graphql"
+NUXT_PUBLIC_PRODUCTS_PER_PAGE="24"
+NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_abcdefghijklmnopqrstuvwxyz"
+PRIMARY_COLOR="#ff0000"
+NUXT_IMAGE_DOMAINS="http://192.168.99.100:3000"
+IS_NATIVE = true

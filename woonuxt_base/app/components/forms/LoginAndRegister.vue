@@ -133,14 +133,6 @@ const isNative = storeSettings.isNative;
     <div class="flex flex-col items-center">
       <Logo v-if="!isNative" class="mb-6 scale-125" />
       <h1 class="text-xl font-semibold lg:text-3xl">{{ formTitle }}</h1>
-      <div v-if="formView === 'login'" class="my-2 text-center">
-        {{ $t('messages.account.noAccount') }}
-        <a class="font-semibold cursor-pointer text-primary" @click="navigate('register')"> {{ $t('messages.account.accountRegister') }} </a>.
-      </div>
-      <div v-if="formView === 'register'" class="my-2 text-center">
-        {{ $t('messages.account.hasAccount') }}
-        <a class="font-semibold cursor-pointer text-primary" @click="navigate('login')"> {{ $t('messages.general.please') }} {{ $t('messages.account.accountLogin') }} </a>.
-      </div>
     </div>
 
     <form class="mt-6" @submit.prevent="handleFormSubmit(userInfo)">
@@ -161,6 +153,7 @@ const isNative = storeSettings.isNative;
           <PasswordInput id="password" className="border rounded-lg w-full p-3 px-4 bg-white" v-model="userInfo.password" :placeholder="inputPlaceholder.password"
           :required="true" />
         </label>
+        <div class="my-2 ml-2  cursor-pointer" @click="navigate('forgotPassword')" v-if="formView === 'login'">{{ $t('messages.account.forgotPassword') }}</div>
       </div>
       <Transition name="scale-y" mode="out-in">
         <div v-if="message" class="my-4 text-sm text-green-500" v-html="message"></div>
@@ -173,8 +166,19 @@ const isNative = storeSettings.isNative;
         <span>{{ buttonText }}</span>
       </button>
     </form>
-    <div class="my-8 text-center cursor-pointer" @click="navigate('forgotPassword')" v-if="formView === 'login'">{{ $t('messages.account.forgotPassword') }}</div>
+
     <div class="my-8 text-center cursor-pointer" @click="navigate('login')" v-if="formView === 'forgotPassword'">{{ $t('messages.account.backToLogin') }}</div>
+
+    <div class="flex flex-col items-center">
+      <div v-if="formView === 'login'" class="my-2 text-center">
+        {{ $t('messages.account.noAccount') }}
+        <a class="font-semibold cursor-pointer text-primary" @click="navigate('register')"> {{ $t('messages.account.accountRegister') }} </a>
+      </div>
+      <div v-if="formView === 'register'" class="my-2 text-center">
+        {{ $t('messages.account.hasAccount') }}
+        <a class="font-semibold cursor-pointer text-primary" @click="navigate('login')"> {{ $t('messages.general.please') }} {{ $t('messages.account.accountLogin') }} </a>
+      </div>
+    </div>
   </div>
 </template>
 

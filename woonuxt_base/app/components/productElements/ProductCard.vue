@@ -147,7 +147,10 @@ const toggleWishlist = () => (isWishlisted.value && props.node.databaseId ? remo
  
       <StarRating v-if="storeSettings.showReviews" :rating="node.averageRating" :count="node.reviewCount" />
       <NuxtLink :to="`/product/${decodeURIComponent(node.slug)}`" :title="node.name">
-        <h2 class="mb-2 font-light leading-tight">{{ node.name }}</h2>
+        <n-ellipsis  class="mb-2 font-light leading-tight" :line-clamp="2">
+          {{ node.name }}
+  </n-ellipsis>
+        <!-- <h2 class="mb-2 font-light leading-tight">{{ node.name }}</h2> -->
       </NuxtLink>
       <div class="text-sm">
       <ProductPrice  :sale-price="node.salePrice" :regular-price="node.regularPrice" />

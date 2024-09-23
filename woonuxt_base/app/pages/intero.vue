@@ -1,37 +1,5 @@
 <script setup lang="ts">
 
-const route = useRoute();
-const { isShowingCart, toggleCart } = useCart();
-const { isShowingMobileMenu, toggleMobileMenu, addBodyClass, removeBodyClass } = useHelpers();
-const { siteName } = useAppConfig();
-const closeCartAndMenu = () => {
-  toggleCart(false);
-  toggleMobileMenu(false);
-};
-
-watch([isShowingCart, isShowingMobileMenu], () => {
-  isShowingCart.value || isShowingMobileMenu.value ? addBodyClass('overflow-hidden') : removeBodyClass('overflow-hidden');
-});
-
-watch(
-  () => route.path,
-  () => closeCartAndMenu(),
-);
-
-const hideHeaderFooter = ref(false);
-watch(
-  () => route.path, // Watch for changes in the route path
-  (newPath) => {
-    const hideRoutes = ['/login', '/register', '/my-account']; // Add the routes you want to hide header and footer for
-    // Use route matching to handle paths accurately (trims trailing slashes)
-    hideHeaderFooter.value = hideRoutes.some((path) => newPath.startsWith(path));
-  },
-  { immediate: true } // Ensures that the watcher runs immediately on page load
-);
-useHead({
-  titleTemplate: `%s - ${siteName}`,
-});
-
 const { viewer, customer } = useAuth();
 const { cart } = useCart();
 
@@ -48,16 +16,28 @@ const carouselItems = [
 
 const currentIndex = ref(0); 
 const showStartButton = ref(false);
+const router = useRoute();
+const skip = ref(isLogin.value);
+function handleIndexChange(newIndex: number, lastIndex: number) {
+  console.log(newIndex, carouselItems.length - 1)
+  // Check if the current index is the last slide
+  if (newIndex === carouselItems.length - 1) {
+    console.log(newIndex, carouselItems.length - 1)
+    showStartButton.value = true;
+    // goToHome()
+  } else {
+    showStartButton.value = false;
+  }
+}
 
 
+// function goToHome() {
+//   router.push('/'); // Navigate to the home page
+// }
 const carouselRef = ref();
 onMounted(() => {
   const currentIndex = carouselRef.value?.getCurrentIndex();
-  if (!isNative) {
-    document.documentElement.classList.add('custom-scrollbar');
-  } else {
-    document.documentElement.classList.remove('custom-scrollbar');
-  }
+
 });
 
 const { storeSettings } = useAppConfig();
@@ -66,54 +46,78 @@ const isNative = storeSettings.isNative;
 </script>
 
 <template>
-  
-    <div dir="ltr" :class=" isNative ? 'flex flex-col h-screen overflow-hidden' : 'overflow-auto '">
 
-      <div>
-        <PhoneHeader v-if="isNative" />
-        <LazyAppHeader v-if="!isNative" />
+    <div class="m-0 space-y-3 h-screen overflow-hidden container">
+      <button
+        type="button"
+        class=" bg-red-200 cursor-pointer text-md w-16 text-center rounded-full my-8 font-bold"
+        @click="skip = true"
+      >
+        skip
+      </button>
 
-        <Transition name="slide-from-right">
-        <LazyCart v-if="isShowingCart" />
-      </Transition>
+      <n-carousel
+        class="rounded-md"
+        ref="carouselRef"
+        show-arrow
+        :loop=false
+        :on-update:current-index="handleIndexChange"
+      >
 
-      <Transition name="slide-from-left">
-        <MobileMenu v-if="isShowingMobileMenu" />
-      </Transition>
+        <InteroElement
+          v-for="(item, index) in carouselItems"
+          :key="index"
+          :header="item.header"
+          :label="item.label"
+          :src="item.src"
+        />
 
-      <Transition name="fade">
+        <template #arrow="{ prev, next }">
           <div
-            v-if="isShowingCart || isShowingMobileMenu"
-            class="bg-black opacity-25 inset-0 z-40 fixed"
-            @click="closeCartAndMenu"
-          />
-        </Transition>
-      <NuxtLoadingIndicator/>
-      </div>
-  
-     
+            class="custom-arrow"
+            v-if="!showStartButton"
+          >
+            <button
+              type="button"
+              class="custom-arrow--left"
+              @click="prev"
+            >
+              <SvgIcon icon="material-symbols-light:arrow-back" />
+            </button>
+            <button
+              type="button"
+              class="custom-arrow--right"
+              @click="next"
+            >
+              <SvgIcon icon="material-symbols-light:arrow-forward" />
+            </button>
+          </div>
 
-
-
-
-      <div 
-      class="overflow-x-hidden min-h-[500px]" 
-      :class="isNative ? 'flex-1  flex flex-col py-1 overflow-scroll' : ''">
-
-        
-      <NuxtPage />
-
-        <!-- page-key="static" -->
-     
-      </div>
-
-<div>
-  <LazyPhoneFooter v-if="isNative" />
-<LazyAppFooter v-if="!isNative" />
-</div>
-
+          <div
+            v-if="showStartButton"
+            class="flex justify-center mt-4 w-24    absolute bottom-[250px] right-[10px] items-center"
+          >
+            <n-button
+              type="primary"
+              style="width: 100%;"
+              @click="skip = true"
+            >Start</n-button>
+          </div>
+        </template>
+        <template #dots="{ total, currentIndex, to }">
+          <ul class="custom-dots">
+            <li
+              v-for="index in total"
+              :key="index"
+              :class="{ 'is-active gtext': currentIndex === index - 1 }"
+              @click="to(index - 1)"
+            />
+          </ul>
+        </template>
+      </n-carousel>
 
     </div>
+ 
 
 </template>
 

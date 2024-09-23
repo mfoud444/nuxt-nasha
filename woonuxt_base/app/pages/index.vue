@@ -1,44 +1,44 @@
 <script lang="ts" setup>
 import { ProductsOrderByEnum } from '#woo';
 const { siteName, description, shortDescription, siteImage } = useAppConfig();
+const { products, isLoading: loadingProducts, setProducts } = useProducts();
 
-// const { data } = await useAsyncGql('getProductCategories', { first: 6 });
-// const productCategories = data.value?.productCategories?.nodes || [];
+const { data } = await useAsyncGql('getProductCategories', { first: 6 });
+const productCategories = data.value?.productCategories?.nodes || [];
 
-// const { data: productData } = await useAsyncGql('getProducts', { first: 5, orderby: ProductsOrderByEnum.POPULARITY });
-// const popularProducts = productData.value.products?.nodes || [];
+const { data: productData } = await useAsyncGql('getProducts', { first: 5, orderby: ProductsOrderByEnum.POPULARITY });
+const popularProducts = productData.value.products?.nodes || [];
 
-const { products, loading: loadingProducts, setProducts } = useProducts();
 
-const loadingCategories = ref(true);
-const productCategories = ref([]);
+// const loadingCategories = ref(true);
+// const productCategories = ref([]);
 
-// Use a computed property with a safe check
-const popularProducts = computed(() => {
-  return products.value && products.value.length > 0 ? products.value.slice(0, 5) : [];
-});
+// // Use a computed property with a safe check
+// const popularProducts = computed(() => {
+//   return products.value && products.value.length > 0 ? products.value.slice(0, 5) : [];
+// });
 
-async function fetchCategories() {
-  try {
-    // Fetch categories
-    const { data: categoryData } = await useAsyncGql('getProductCategories', { first: 6 });
-    productCategories.value = categoryData.value?.productCategories?.nodes || [];
-    loadingCategories.value = false;
+// async function fetchCategories() {
+//   try {
+//     // Fetch categories
+//     const { data: categoryData } = await useAsyncGql('getProductCategories', { first: 6 });
+//     productCategories.value = categoryData.value?.productCategories?.nodes || [];
+//     loadingCategories.value = false;
 
-    // Fetch products
-    const { data: productData } = await useAsyncGql('getProducts', { first: 5, orderby: ProductsOrderByEnum.POPULARITY });
-    const fetchedProducts = productData.value?.products?.nodes || [];
-    setProducts(fetchedProducts);
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    loadingCategories.value = false;
-    setProducts([]); // Set products to an empty array in case of error
-  }
-}
-// fetchCategories();
-onMounted(async () => {
-  await fetchCategories();
-});
+//     // Fetch products
+//     const { data: productData } = await useAsyncGql('getProducts', { first: 5, orderby: ProductsOrderByEnum.POPULARITY });
+//     const fetchedProducts = productData.value?.products?.nodes || [];
+//     setProducts(fetchedProducts);
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//     loadingCategories.value = false;
+//     setProducts([]); // Set products to an empty array in case of error
+//   }
+// }
+// // fetchCategories();
+// onMounted(async () => {
+//   await fetchCategories();
+// });
 // fetchCategories()
 const { t } = useI18n();
 useSeoMeta({
@@ -67,6 +67,7 @@ const isNative = storeSettings.isNative;
 
       <HeroBanner v-if="!isNative" />
       <n-carousel
+      v-if="isNative"
         :class="!isNative ? 'mt-4' : ''"
         class="rounded-md"
         show-arrow
@@ -131,20 +132,20 @@ const isNative = storeSettings.isNative;
       </div>
       <div class="grid justify-center grid-cols-3 gap-4 mt-8 md:grid-cols-3 lg:grid-cols-6">
         <!-- <CategoryCard v-for="(category, i) in productCategories" :key="i" class="w-full" :node="category" /> -->
-        <template v-if="loadingCategories">
+        <!-- <template v-if="loadingCategories">
           <CategoryCardSkeleton
             v-for="i in 6"
             :key="i"
           />
         </template>
-        <template v-else>
+        <template v-else> -->
           <CategoryCard
             v-for="(category, i) in productCategories"
             :key="i"
             class="w-full"
             :node="category"
           />
-        </template>
+        <!-- </template> -->
       </div>
     </section>
 

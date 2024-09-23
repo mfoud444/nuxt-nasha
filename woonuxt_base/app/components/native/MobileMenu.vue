@@ -63,21 +63,21 @@ const menuOptions: MenuOption[] = [
   }
 ];
 
-// const route = useRoute();
-// watch(route, (newRoute) => {
-//   if (newRoute.path === '/') {
-//     activeKey.value = 'shop';
-//   } else if (newRoute.path === '/categories') {
-//     activeKey.value = 'category';
-//   } else if (newRoute.path === '/products' || newRoute.path === '/checkout') {
-//     activeKey.value = 'products';
-//   } else if (newRoute.path === '/wishlist') {
-//     activeKey.value = 'wishlist';
+const route = useRoute();
+watch(route, (newRoute) => {
+  if (newRoute.path === '/') {
+    activeKey.value = 'shop';
+  } else if (newRoute.path === '/categories') {
+    activeKey.value = 'category';
+  } else if (newRoute.path === '/products' || newRoute.path === '/checkout') {
+    activeKey.value = 'products';
+  } else if (newRoute.path === '/wishlist') {
+    activeKey.value = 'wishlist';
   
-//   } else if (newRoute.path === '/my-account') {
-//     activeKey.value = 'my-account';
-//   }
-// }, { immediate: true });  
+  } else if (newRoute.path === '/my-account') {
+    activeKey.value = 'my-account';
+  }
+}, { immediate: true });  
 
 </script>
 

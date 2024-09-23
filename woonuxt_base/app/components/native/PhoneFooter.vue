@@ -50,18 +50,18 @@ const menuOptions: MenuOption[] = [
     key: 'me',
   },
 ];
-// const route = useRoute();
-// watch(route, (newRoute) => {
-//   if (newRoute.path === '/') {
-//     activeKey.value = 'shop';
-//   } else if (newRoute.path === '/categories') {
-//     activeKey.value = 'category';
-//   } else if (newRoute.path === '/cart' || newRoute.path === '/checkout') {
-//     activeKey.value = 'cart';
-//   } else if (newRoute.path === '/my-account') {
-//     activeKey.value = 'me';
-//   }
-// }, { immediate: true });  // Run immediately on component mount
+const route = useRoute();
+watch(route, (newRoute) => {
+  if (newRoute.path === '/') {
+    activeKey.value = 'shop';
+  } else if (newRoute.path === '/categories') {
+    activeKey.value = 'category';
+  } else if (newRoute.path === '/cart' || newRoute.path === '/checkout') {
+    activeKey.value = 'cart';
+  } else if (newRoute.path === '/my-account') {
+    activeKey.value = 'me';
+  }
+}, { immediate: true });  // Run immediately on component mount
 
 </script>
 
