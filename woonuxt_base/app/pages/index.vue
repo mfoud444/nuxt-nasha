@@ -67,7 +67,7 @@ const isNative = storeSettings.isNative;
 
       <HeroBanner v-if="!isNative" />
       <n-carousel
-      v-if="isNative"
+     
         :class="!isNative ? 'mt-4' : ''"
         class="rounded-md"
         show-arrow
