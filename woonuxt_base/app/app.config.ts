@@ -25,7 +25,7 @@ export default defineAppConfig({
     showMoveToWishlist: false,
     saleBadge: 'percent', // 'percent', 'onSale' or 'hidden'
     // isNative:Capacitor.isNativePlatform(),
-    isNative: true ,
+    isNative: false ,
   },
 });
 
