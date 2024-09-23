@@ -3,7 +3,7 @@ const { wooNuxtVersionInfo } = useHelpers();
 
 </script>
 <template>
-  <footer class="bg-grad order-last my-2 myglass bottom-0 z-40">
+  <footer class="bg-grad order-last mt-2 myglass bottom-0 z-40">
     <div class="container flex flex-wrap justify-between gap-12 my-12 md:gap-24">
       <div class="mr-auto">
         <Logo />
