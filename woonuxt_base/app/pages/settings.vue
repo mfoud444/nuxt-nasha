@@ -16,7 +16,35 @@ const toggleNotifications = () => {
 </script>
 
 <template>
+
+
+
   <div class="pb-4 px-2 rounded-md space-y-2">
+
+    <div class=" bg-blue-100 rounded-lg shadow-sm h-[150px] p-4   w-full grid grid-cols-2">
+      
+<div>
+  <img
+      class="rounded-md h-[150px]"
+      src="/images/pre.webp"
+   
+    
+    >
+</div>
+
+<div class="flex flex-col space-y-4">
+  <div class=" gtext font-bold text-lg">
+Get Full Access App
+</div>
+
+<button class=" bg-yellow-500 font-bold text-center rounded-lg py-2 text-gray-100">
+  Sign Up
+</button>
+</div>
+
+
+  </div>
+
     <NCard title="Account Settings">
       <div class="flex flex-col space-y-2">
         <SettingsElement

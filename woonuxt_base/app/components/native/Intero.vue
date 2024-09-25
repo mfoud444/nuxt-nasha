@@ -1,95 +1,132 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 const { t } = useI18n();
 const carouselItems = [
   { header: t('messages.general.welcome'), label: t('messages.general.browseProducts'), src: '/images/b1.png' },
-  { header: t('messages.general.exclusiveDeals'), label: t('messages.general.todayOffers'), src: '/images/b2.png' },
-  { header: t('messages.general.newArrivals'), label: t('messages.general.exploreProducts'), src: '/images/b3.png' },
+  { header: t('messages.general.exclusiveDeals'), label: t('messages.general.todayOffers'), src: '/images/intero22.png' },
+  { header: t('messages.general.newArrivals'), label: t('messages.general.exploreProducts'), src: '/images/intero3.webp' },
   { header: t('messages.general.joinCommunity'), label: t('messages.general.signUpDeals'), src: '/images/b4.png' }
 ];
 
-const currentIndex = ref(0); // Tracks the current index of the carousel
-const showStartButton = ref(false); // Controls the visibility of the "Start" button
+const currentIndex = ref(0);
+const showStartButton = ref(false);
 const router = useRoute();
+const { viewer, customer } = useAuth();
+const {isShowIntero} = useHelpers();
+const { cart } = useCart();
 
+const isLogin = computed(() => viewer.value !== null);
+
+const skip = ref(isLogin.value);
 function handleIndexChange(newIndex: number, lastIndex: number) {
-    console.log(newIndex, carouselItems.length - 1)
+  console.log(newIndex, carouselItems.length - 1)
   // Check if the current index is the last slide
   if (newIndex === carouselItems.length - 1) {
     console.log(newIndex, carouselItems.length - 1)
     showStartButton.value = true;
-    goToHome()
+    isShowIntero.value = false;
+    // goToHome()
   } else {
     showStartButton.value = false;
   }
 }
 
-
-function goToHome() {
-  router.push('/'); // Navigate to the home page
-}
 const carouselRef = ref();
 onMounted(() => {
   const currentIndex = carouselRef.value?.getCurrentIndex();
-  console.log("Initial Carousel Index:", currentIndex); // Outputs the current index of the carousel
+
 });
+
+const { storeSettings } = useAppConfig();
+
+const isNative = storeSettings.isNative;
+const showModal = ref(!isLogin.value && isShowIntero.value)
+
+function skipIntero(){
+  showModal.value = false;
+  isShowIntero.value = false;
+}
 </script>
 
 <template>
-  <div class="m-0 space-y-3">
-    <n-carousel
-      class="rounded-md"
-         ref="carouselRef"
-      show-arrow
-      :loop=false
-      :on-update:current-index="handleIndexChange" 
-    >
- 
-      <InterElement 
-        v-for="(item, index) in carouselItems"
-        :key="index"
-        :header="item.header"
-        :label="item.label"
-        :src="item.src"
-      />
-    
-      <!-- Custom arrows for navigation -->
-      <template #arrow="{ prev, next }">
-        <div class="custom-arrow">
-          <button type="button" class="custom-arrow--left" @click="prev">
-            <SvgIcon icon="material-symbols-light:arrow-back" />
-          </button>
-          <button type="button" class="custom-arrow--right" @click="next">
-            <SvgIcon icon="material-symbols-light:arrow-forward" />
-          </button>
-        </div>
-      </template>
 
-      <!-- Custom dots for navigation -->
-      <template #dots="{ total, currentIndex, to }">
-        <ul class="custom-dots">
-          <li
-            v-for="index in total"
-            :key="index"
-            :class="{ 'is-active gtext': currentIndex === index - 1 }"
-            @click="to(index - 1)"
-          />
-        </ul>
-      </template>
-    </n-carousel>
+<n-modal v-model:show="showModal">
 
-    <!-- Display the "Start" button only on the last slide -->
-    <div v-if="showStartButton" class="flex justify-center mt-4  top-40 items-center">
-      <n-button type="primary" @click="goToHome">{{ $t('messages.general.start') }}</n-button>
+
+    <div class="m-0 space-y-3 h-screen overflow-hidden container myglass ">
+      <button
+        type="button"
+        class=" bg-red-200 cursor-pointer text-md w-16 text-center rounded-full my-8 font-bold"
+        @click="skipIntero"
+      >
+        skip
+      </button>
+
+      <n-carousel
+        class="rounded-md"
+        ref="carouselRef"
+        show-arrow
+        :loop=false
+        :on-update:current-index="handleIndexChange"
+      >
+
+        <InteroElement
+          v-for="(item, index) in carouselItems"
+          :key="index"
+          :header="item.header"
+          :label="item.label"
+          :src="item.src"
+        />
+
+        <template #arrow="{ prev, next }">
+          <div
+            class="custom-arrow"
+            v-if="!showStartButton"
+          >
+            <button
+              type="button"
+              class="custom-arrow--left"
+              @click="prev"
+            >
+              <SvgIcon icon="material-symbols-light:arrow-back" />
+            </button>
+            <button
+              type="button"
+              class="custom-arrow--right"
+              @click="next"
+            >
+              <SvgIcon icon="material-symbols-light:arrow-forward" />
+            </button>
+          </div>
+
+          <div
+            v-if="showStartButton"
+            class="flex justify-center mt-4 w-24    absolute bottom-[250px] right-[10px] items-center"
+          >
+            <n-button
+              type="primary"
+              style="width: 100%;"
+              @click="skipIntero"
+            >Start</n-button>
+          </div>
+        </template>
+        <template #dots="{ total, currentIndex, to }">
+          <ul class="custom-dots">
+            <li
+              v-for="index in total"
+              :key="index"
+              :class="{ 'is-active gtext': currentIndex === index - 1 }"
+              @click="to(index - 1)"
+            />
+          </ul>
+        </template>
+      </n-carousel>
+
     </div>
-  </div>
+ 
+  </n-modal>
 </template>
 
-<style scoped>
-.brand img {
-  max-height: min(8vw, 120px);
-  object-fit: contain;
-  object-position: center;
-}
+<style lang="postcss">
 
 .carousel-img {
   width: 100%;
@@ -100,27 +137,16 @@ onMounted(() => {
 .custom-arrow {
   display: flex;
   position: absolute;
-  bottom: 100px;
-  right: 10px;
+  bottom: 240px;
+  right: 0px;
 }
 
 .custom-arrow button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  margin-right: 12px;
-  color: #ffffff;
-  background-color: rgba(1, 1, 14, 0.1);
-  border-width: 0;
-  border-radius: 8px;
-  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
+@apply rounded-full bg-red-400 font-bold w-10 h-10 mt-8;
 }
 
 .custom-arrow button:hover {
-  background-color: rgba(5, 0, 0, 0.2);
+@apply bg-red-600;
 }
 
 .custom-arrow button:active {
@@ -133,8 +159,8 @@ onMounted(() => {
   margin: 0;
   padding: 0;
   position: absolute;
-  bottom: 150px;
-  right: 20px;
+  bottom: 300px;
+  right: 10px;
 }
 
 .custom-dots li {
@@ -152,4 +178,6 @@ onMounted(() => {
   width: 40px;
   background: #031835;
 }
+
+
 </style>

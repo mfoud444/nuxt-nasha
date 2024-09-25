@@ -54,11 +54,14 @@ const { isShowingSearch } = useSearching();
 const { storeSettings } = useAppConfig();
 
 const isNative = storeSettings.isNative;
+
 </script>
 
 <template>
   <main>
     <div class="m-4 mt-2 space-y-3">
+
+<Intero   v-if="isNative"/>
 
       <ProductSearch
         v-if="isNative"

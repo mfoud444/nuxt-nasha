@@ -11,7 +11,7 @@ const stripeKey = runtimeConfig.public?.STRIPE_PUBLISHABLE_KEY || null;
 
 const buttonText = ref<string>(isProcessingOrder.value ? t('messages.general.processing') : t('messages.shop.checkoutButton'));
 const isCheckoutDisabled = computed<boolean>(() => isProcessingOrder.value || isUpdatingCart.value || !orderInput.value.paymentMethod);
-
+const message = useMessage()
 const isInvalidEmail = ref<boolean>(false);
 const stripe = stripeKey ? await loadStripe(stripeKey) : null;
 let elements = ref(null);
@@ -74,25 +74,26 @@ function validateStep(): boolean {
   if (current.value === 1) {
     // Validate email for Step 1
     if (!customer.value.billing.email || isInvalidEmail.value) {
-      alert(t('messages.error.invalidEmail'));
+      message.error(t('messages.error.invalidEmail'))
+  
       return false;
     }
   }
   if (current.value === 2) {
     // Validate billing details for Step 2
     if (!customer.value.billing?.firstName || !customer.value.billing.lastName || !customer.value.billing.address1 || !customer.value.billing.city || !customer.value.billing.postcode || !customer.value.billing.country) {
-      alert(t('messages.error.missingBillingDetails'));
+      message.error(t('messages.error.missingBillingDetails'));
       return false;
     }
     if (orderInput.shipToDifferentAddress && (!customer.value.shipping.firstName || !customer.value.shipping.lastName || !customer.value.shipping.address1 || !customer.value.shipping.city || !customer.value.shipping.postcode || !customer.value.shipping.country)) {
-      alert(t('messages.error.missingShippingDetails'));
+      message.error(t('messages.error.missingShippingDetails'));
       return false;
     }
   }
   if (current.value === 3) {
     // Validate payment method for Step 3
     if (!orderInput.value.paymentMethod || !orderInput.value.paymentMethod.id) {
-      alert(t('messages.error.missingPaymentMethod'));
+      message.error(t('messages.error.missingPaymentMethod'));
       return false;
     }
   }
@@ -387,9 +388,9 @@ function prev() {
             </template>
           </div>
 
-          <n-space class="sticky bottom-0 text-end">
-              <n-button-group>
-                <n-button @click="prev" :disabled="current ===1 ? true : false">
+          <div class="sticky bottom-0">
+              <n-button-group class="text-start bg-blue-100">
+                <n-button @click="prev" class="rounded-full" :disabled="current ===1 ? true : false">
                   <template #icon>
                     <SvgIcon icon="ion:arrow-back" />
                   </template>
@@ -400,7 +401,7 @@ function prev() {
                   </template>
                 </n-button>
               </n-button-group>
-            </n-space>
+            </div>
 
 
         </form>

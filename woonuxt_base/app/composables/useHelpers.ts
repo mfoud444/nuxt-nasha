@@ -7,6 +7,8 @@ export function useHelpers() {
   const route = useRoute();
   const runtimeConfig = useRuntimeConfig();
 
+  const isShowIntero = useState<boolean>('isShowIntero', () => true);
+
   const isShowingMobileMenu = useState<boolean>('isShowingMobileMenu', () => false);
   const wooNuxtVersionInfo: string = pkg.version || '0.0.0';
   const productsPerPage: number = runtimeConfig.public?.PRODUCTS_PER_PAGE || 24;
@@ -235,7 +237,8 @@ export function useHelpers() {
     debounce,
     logGQLError,
     currentPage,
-    updateCurrentPage
+    updateCurrentPage,
     // isNative
+    isShowIntero
   };
 }

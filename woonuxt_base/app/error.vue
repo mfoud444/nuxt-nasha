@@ -17,6 +17,8 @@ watch(
   () => route.path,
   () => closeCartAndMenu(),
 );
+
+const router = useRouter();
 </script>
 
 <template>
@@ -32,8 +34,17 @@ watch(
     </Transition>
 
     <div class="flex flex-col items-center justify-center flex-1 gap-4 min-h-[500px]">
-      <h1 class="text-6xl font-bold">Error {{ error?.statusCode || '404' }}</h1>
-      <p v-if="error?.message" class="text-lg">{{ error.message }}</p>
+      <n-result
+    status="404"
+    title="404 Not Found"
+    description="You know life is always ridiculous."
+  >
+    <template #footer>
+      <n-button @click="router.push({ path:'/'});" type="primary">Back to Home</n-button>
+    </template>
+  </n-result>
+      <!-- <h1 class="text-6xl font-bold">Error {{ error?.statusCode || '404' }}</h1>
+      <p v-if="error?.message" class="text-lg">{{ error.message }}</p> -->
     </div>
 
     <Transition name="fade">

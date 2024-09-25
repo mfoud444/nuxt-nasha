@@ -63,10 +63,13 @@ onMounted(() => {
 const { storeSettings } = useAppConfig();
 
 const isNative = storeSettings.isNative;
+// font-family: 'Lateef', sans-serif;
 </script>
 
 <template>
-  
+  <!-- <n-modal-provider> -->
+    <n-message-provider>
+
     <div dir="ltr" :class=" isNative ? 'flex flex-col h-screen overflow-hidden' : 'overflow-auto '">
 
       <div>
@@ -114,7 +117,9 @@ const isNative = storeSettings.isNative;
 
 
     </div>
-
+  </n-message-provider>
+  <!-- </n-modal-provider> -->
+  
 </template>
 
 <style lang="postcss">

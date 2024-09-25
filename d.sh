@@ -48,7 +48,7 @@ original_dir=$(pwd)
 
 
 # handle_git
-cp .envproduction .env
+# cp .envproduction .env
 # cp .envdevelopment .env
 # npm run generate
 # npx cap sync

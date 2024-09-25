@@ -199,7 +199,11 @@
       "passwordMismatch": "Passwords do not match. Please try again.",
       "invalidPasswordResetLink": "Password reset link is invalid.",
       "general": "Something went wrong",
-      "noOrder": "We could not find your order. Please try again later."
+      "noOrder": "We could not find your order. Please try again later.",
+      "invalidEmail": "Invalid email address.",
+      "missingBillingDetails": "Missing billing details.",
+      "missingShippingDetails": "Missing shipping details.",
+      "missingPaymentMethod": "Missing payment method."
     }
     ,
 

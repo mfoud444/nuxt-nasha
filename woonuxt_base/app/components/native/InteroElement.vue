@@ -17,7 +17,7 @@ const props = defineProps({
 
 <template>
  
-<div class=" flex flex-col gap-12">
+<div class=" flex flex-col text-center gap-12">
 
 
 <div class=" gtext font-bold text-4xl ">
