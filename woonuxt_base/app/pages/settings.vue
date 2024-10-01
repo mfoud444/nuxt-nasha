@@ -104,7 +104,7 @@ const router = useRouter();
           suffixIcon="ion:more"
           @click="showLanguageDialog = true" 
         />
-        <n-modal v-model:show="showLanguageDialog" :mask-closable="false" preset="dialog" title="{{ $t('messages.general.language') }}">
+        <n-modal v-model:show="showLanguageDialog" :mask-closable="false" preset="dialog" :title="$t('messages.general.language')">
           <n-radio-group v-model:value="selectedLanguage">
             <div class="flex flex-col my-8 gap-4">
               <n-radio v-for="locale in locales" :key="locale.code" :value="locale.code" :label="locale.name">
