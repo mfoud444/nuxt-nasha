@@ -115,23 +115,36 @@ const disabledAddToCart = computed(() => {
   if (isSimpleProduct.value) return !type.value || stockStatus.value === StockStatusEnum.OUT_OF_STOCK || isUpdatingCart.value;
   return !type.value || stockStatus.value === StockStatusEnum.OUT_OF_STOCK || !activeVariation.value || isUpdatingCart.value;
 });
-import { Capacitor } from '@capacitor/core';
-const isNative = ref(Capacitor.isNativePlatform());
+
 const { addToWishlist, removeFromWishlist, isInList } = useWishlist();
 
 
 const isWishlisted = computed(() => (props.node.databaseId ? isInList(props.node.databaseId) : false));
 
 const toggleWishlist = () => (isWishlisted.value && props.node.databaseId ? removeFromWishlist(props.node.databaseId) : addToWishlist(props.node));
+
+
+
+const isNative = storeSettings.isNative;
+
 </script>
 
 
 
 <template>
 
-  <div class="relative product-card p-2   flex w-full max-w-xs flex-col justify-between overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
-    <NuxtLink :to="`/product/${decodeURIComponent(node.slug)}`" :title="node.name">
-      <SaleBadge :node="node" class="absolute top-2 right-2" />
+  <div
+    class="relative product-card p-2   flex w-full max-w-xs flex-col justify-between overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
+    :class="isNative ? ' max-h-[360px]' : ''"
+  >
+    <NuxtLink
+      :to="`/product/${decodeURIComponent(node.slug)}`"
+      :title="node.name"
+    >
+      <SaleBadge
+        :node="node"
+        class="absolute top-2 right-2"
+      />
       <NuxtImg
         v-if="imagetoDisplay"
         :width="imgWidth"
@@ -142,51 +155,86 @@ const toggleWishlist = () => (isWishlisted.value && props.node.databaseId ? remo
         :loading="index <= 3 ? 'eager' : 'lazy'"
         :sizes="`${imgWidth / 2}px md:${imgWidth}px`"
         placeholder
-        placeholder-class="blur-xl" />
+        placeholder-class="blur-xl"
+      />
     </NuxtLink>
- 
-      <StarRating v-if="storeSettings.showReviews" :rating="node.averageRating" :count="node.reviewCount" />
-      <NuxtLink :to="`/product/${decodeURIComponent(node.slug)}`" :title="node.name">
-        <n-ellipsis  class="mb-2 font-light leading-tight" :line-clamp="2">
+    <div class=" flex flex-col gap-2">
+      <StarRating
+        v-if="storeSettings.showReviews"
+        :rating="node.averageRating"
+        :count="node.reviewCount"
+      />
+      <NuxtLink
+        :to="`/product/${decodeURIComponent(node.slug)}`"
+        :title="node.name"
+      >
+        <n-ellipsis
+          class="mb-2 font-light leading-tight"
+          :line-clamp="2"
+        >
           {{ node.name }}
-  </n-ellipsis>
+        </n-ellipsis>
         <!-- <h2 class="mb-2 font-light leading-tight">{{ node.name }}</h2> -->
       </NuxtLink>
-      <div class="text-sm">
-      <ProductPrice  :sale-price="node.salePrice" :regular-price="node.regularPrice" />
     </div>
-      <div class="flex   self-justify-end gap-4 justify-between items-end ">
-        <div>
-        <button type="button" class="cursor-pointer flex mt-4 text-sm text-gray-400 gap-2 items-center" @click="toggleWishlist">
-    <Icon v-if="isWishlisted" name="ion:heart" size="30" class="text-red-400" />
-    <Icon v-else name="ion:heart-outline" size="30" />
-   
-  </button>
-</div>
-        
-      <form  @submit.prevent="handleAddToCart(selectProductInput)">
-          <AttributeSelections
-            v-if="node.type == 'VARIABLE' && node.attributes && node.variations"
-            class="mt-8 mb-8"
-            :attributes="node.attributes.nodes"
-            :defaultAttributes="node.defaultAttributes"
-            :variations="node.variations.nodes"
-            @attrs-changed="updateSelectedVariations" />
-        
-            <input
-              v-model="quantity"
-              type="number"
-              :hidden=true
-              min="1"
-              aria-label="Quantity"/>
-            <AddToCartButton class="" :disabled="disabledAddToCart" :class="{ loading: isUpdatingCart }" :only-icon="true" />
-       
-      
-        </form>
+    <div class="text-sm">
+      <ProductPrice
+        :sale-price="node.salePrice"
+        :regular-price="node.regularPrice"
+      />
+    </div>
+    <div class="flex   self-justify-end gap-4 justify-between items-end ">
+      <div>
+        <button
+          type="button"
+          class="cursor-pointer flex mt-4 text-sm text-gray-400 gap-2 items-center"
+          @click="toggleWishlist"
+        >
+          <Icon
+            v-if="isWishlisted"
+            name="ion:heart"
+            size="30"
+            class="text-red-400"
+          />
+          <Icon
+            v-else
+            name="ion:heart-outline"
+            size="30"
+          />
 
+        </button>
       </div>
 
- 
+      <form @submit.prevent="handleAddToCart(selectProductInput)">
+        <AttributeSelections
+          v-if="node.type == 'VARIABLE' && node.attributes && node.variations"
+          class="mt-8 mb-8"
+          :attributes="node.attributes.nodes"
+          :defaultAttributes="node.defaultAttributes"
+          :variations="node.variations.nodes"
+          @attrs-changed="updateSelectedVariations"
+        />
+
+        <input
+          v-model="quantity"
+          type="number"
+          :hidden=true
+          min="1"
+          aria-label="Quantity"
+        />
+        <AddToCartButton
+          class=""
+          :disabled="disabledAddToCart"
+          :class="{ loading: isUpdatingCart }"
+          :only-icon="true"
+        />
+
+
+      </form>
+
+    </div>
+
+
   </div>
 </template>
 

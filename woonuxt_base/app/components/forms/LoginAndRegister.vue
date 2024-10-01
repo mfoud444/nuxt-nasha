@@ -127,9 +127,19 @@ const isNative = storeSettings.isNative;
 </script>
 
 <template>
+ 
   <div class="max-w-lg mx-auto my-16   lg:my-24"
-  :class='isNative ? "mt-12 " : ""'
+  :class='isNative ? "mt-12" : ""'
   >
+<div v-if="isNative" class=" my-2 rounded-md bg-slate-50">
+  <n-image
+    width="300"
+    src="/images/b1.png"
+    preview-disabled
+  />
+ 
+</div>
+
     <div class="flex flex-col items-center">
       <Logo v-if="!isNative" class="mb-6 scale-125" />
       <h1 class="text-xl font-semibold lg:text-3xl">{{ formTitle }}</h1>
@@ -178,6 +188,7 @@ const isNative = storeSettings.isNative;
         {{ $t('messages.account.hasAccount') }}
         <a class="font-semibold cursor-pointer text-primary" @click="navigate('login')"> {{ $t('messages.general.please') }} {{ $t('messages.account.accountLogin') }} </a>
       </div>
+      <div class=" mt-8 text-[12px] text-center text-gray-400">By continuing, you agree to Nasha Store Terms of Use. Read our Privacy Policy.</div>
     </div>
   </div>
 </template>

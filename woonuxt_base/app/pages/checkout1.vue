@@ -307,7 +307,11 @@ function prev() {
                 />
               </div>
 
-              <label
+              <label v-if="cart.availableShippingMethods.length > 0" for="shipToDifferentAddress" class="flex items-center gap-2">
+            <span>{{ $t('messages.billing.differentAddress') }}</span>
+            <input id="shipToDifferentAddress" v-model="orderInput.shipToDifferentAddress" type="checkbox" name="shipToDifferentAddress" />
+          </label>
+              <!-- <label
                 for="shipToDifferentAddress"
                 class="flex items-center gap-2"
               >
@@ -318,7 +322,7 @@ function prev() {
                   type="checkbox"
                   name="shipToDifferentAddress"
                 />
-              </label>
+              </label> -->
 
               <Transition
                 name="scale-y"

@@ -69,7 +69,12 @@
         "todayOffers": "تحقق من عروض اليوم",
         "exploreProducts": "استكشف أحدث المنتجات",
         "signUpDeals": "سجل للحصول على عروض حصرية",
-        "start": "ابدأ"
+        "start": "ابدأ",
+
+
+          "getFullAccessApp": " احصل على الوصول تجربة أفضل عن طريق التسجيل",
+      "signUp": "سجل الآن",
+        "language":"اللغة"
       },
       "account": {
         "changePassword": "تغيير كلمة المرور",
@@ -104,7 +109,19 @@
         "updateSuccess": "تم التحديث بنجاح",
         "failed": "فشل في التحديث",
 
-          "wishlist": "قائمة الرغبات"
+          "wishlist": "قائمة الرغبات",
+
+          "accountSettings": "إعدادات الحساب",
+          "orders": "الطلبات",
+          "shippingAddress": "عنوان الشحن",
+          "paymentMethods": "طرق الدفع",
+          "preferences": "التفضيلات",
+          "rateApp": "قيّم التطبيق",
+          "shareApp": "شارك التطبيق",
+          "privacySecurity": "الخصوصية والأمان",
+          "privacyPolicy": "سياسة الخصوصية",
+          "termsOfService": "شروط الخدمة",
+          "version": "الإصدار 0.0.1"
       },
       "shop": {
         "shopByCategory": "تسوق حسب الفئة",
@@ -214,6 +231,11 @@
         "allProducts": "جميع المنتجات",
         "wishlist": "قائمة الرغبات",
         "myAccount": "حسابي"
+      },
+      "share": {
+        "title": "شارك تطبيق ناشا ستور",
+        "text": "اكتشف أفضل المنتجات والعروض الحصرية على تطبيق ناشا ستور. احصل عليه الآن!",
+        "dialogTitle": "مشاركة ناشا ستور"
       }
     }
   }

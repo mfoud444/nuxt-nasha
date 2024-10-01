@@ -24,8 +24,8 @@ export default defineAppConfig({
     showBreadcrumbOnSingleProduct: true,
     showMoveToWishlist: false,
     saleBadge: 'percent', // 'percent', 'onSale' or 'hidden'
-    // isNative:Capacitor.isNativePlatform(),
     isNative: false ,
+    googlePlayLink:"https://play.google.com/store/apps/details?id=com.nasha.store",
   },
 });
 

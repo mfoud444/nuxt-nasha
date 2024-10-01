@@ -5,11 +5,11 @@ const config: CapacitorConfig = {
   appId: 'com.nasha.store',
   appName: 'Nasha Store',
   webDir: '.output/public',
-  server: {
-    androidScheme: 'https',
-    cleartext: true,
-    allowNavigation: ['*']
-  },
+  // server: {
+  //   androidScheme: 'https',
+  //   cleartext: true,
+  //   allowNavigation: ['*']
+  // },
   android: {
     allowMixedContent: true
   },

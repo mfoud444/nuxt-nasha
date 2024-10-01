@@ -72,7 +72,11 @@
             "todayOffers": "Check out today’s offers",
             "exploreProducts": "Explore the newest products",
             "signUpDeals": "Sign up for exclusive deals",
-            "start": "Start"
+            "start": "Start",
+
+             "getFullAccessApp": "Get Full Access App",
+      "signUp": "Sign Up",
+      "language":"Language"
       
     },
     "account": {
@@ -108,7 +112,19 @@
       "updateSuccess": "Updated successfully",
       "failed": "Failed to update",
 
-      "wishlist": "Wishlist"
+      "wishlist": "Wishlist",
+    
+        "accountSettings": "Account Settings",
+        "orders": "Orders",
+        "shippingAddress": "Shipping Address",
+        "paymentMethods": "Payment Methods",
+        "preferences": "Preferences",
+        "rateApp": "Rate app",
+        "shareApp": "Share app",
+        "privacySecurity": "Privacy & Security",
+        "privacyPolicy": "Privacy Policy",
+        "termsOfService": "Terms of Service",
+        "version": "Version 0.0.1"
     
 
     },
@@ -219,6 +235,11 @@
       "allProducts": "All Products",
       "wishlist": "Wishlist",
       "myAccount": "My Account"
+    },
+    "share": {
+      "title": "Share Nasha Store App",
+      "text": "Discover the best products and exclusive offers on the Nasha Store app. Get it now!",
+      "dialogTitle": "Share Nasha Store"
     }
   }
 }

@@ -52,10 +52,10 @@ function skipIntero(){
 <n-modal v-model:show="showModal">
 
 
-    <div class="m-0 space-y-3 h-screen overflow-hidden container myglass ">
+    <div class="m-0 space-y-3 h-screen overflow-hidden container bg-slate-100 ">
       <button
         type="button"
-        class=" bg-red-200 cursor-pointer text-md w-16 text-center rounded-full my-8 font-bold"
+        class=" bg-red-200  py-2 cursor-pointer text-md w-16 text-center rounded-full my-8 font-bold"
         @click="skipIntero"
       >
         skip

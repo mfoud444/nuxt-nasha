@@ -17,6 +17,9 @@ useSeoMeta({
       <LoadingIcon class="m-auto" />
     </div>
     <template v-else>
+      <!-- <n-model v-if="!viewer">
+        <LazyLoginAndRegister  />
+      </n-model> -->
       <LazyLoginAndRegister v-if="!viewer" />
       <div v-else class="flex flex-col items-start justify-between w-full lg:gap-12 mb-24 lg:flex-row">
         <div class="mt-2 lg:sticky top-16 w-full lg:max-w-[260px]">

@@ -19,35 +19,45 @@ watch(
 );
 
 const hideHeaderFooter = ref(false);
+const header = ref('');
+
+const { t } = useI18n();
 watch(
-  () => route.path, // Watch for changes in the route path
+  () => route.path,
   (newPath) => {
-    const hideRoutes = ['/login', '/register', '/my-account']; // Add the routes you want to hide header and footer for
-    // Use route matching to handle paths accurately (trims trailing slashes)
+    const hideRoutes = [
+      '/login',
+      '/register',
+      '/my-account',
+      '/wishlist',
+      '/product-category',
+      '/product',
+      '/auth',
+    ];
+
     hideHeaderFooter.value = hideRoutes.some((path) => newPath.startsWith(path));
+    if (newPath == '/wishlist') {
+      header.value = t('messages.shop.wishlist')
+    }
+    else   if (newPath == '/auth') {
+      header.value = 'Account'
+    }
+   else if (newPath.startsWith('/product-category')) {
+      header.value = newPath.split('/')[2]!;
+     
+
+    }else if  (newPath.startsWith('/product')) {
+      header.value = newPath.split('/')[2]!;
+     
+
+    }
+
   },
   { immediate: true } // Ensures that the watcher runs immediately on page load
 );
 useHead({
   titleTemplate: `%s - ${siteName}`,
 });
-
-const { viewer, customer } = useAuth();
-const { cart } = useCart();
-
-const isLogin = computed(() => viewer.value !== null);
-
-
-const { t } = useI18n();
-const carouselItems = [
-  { header: t('messages.general.welcome'), label: t('messages.general.browseProducts'), src: '/images/b1.png' },
-  { header: t('messages.general.exclusiveDeals'), label: t('messages.general.todayOffers'), src: '/images/b2.webp' },
-  { header: t('messages.general.newArrivals'), label: t('messages.general.exploreProducts'), src: '/images/b3.png' },
-  { header: t('messages.general.joinCommunity'), label: t('messages.general.signUpDeals'), src: '/images/b4.png' }
-];
-
-const currentIndex = ref(0); 
-const showStartButton = ref(false);
 
 
 const carouselRef = ref();
@@ -63,63 +73,73 @@ onMounted(() => {
 const { storeSettings } = useAppConfig();
 
 const isNative = storeSettings.isNative;
+
+
 // font-family: 'Lateef', sans-serif;
 </script>
 
 <template>
   <!-- <n-modal-provider> -->
-    <n-message-provider>
+  <n-message-provider>
 
-    <div dir="ltr" :class=" isNative ? 'flex flex-col h-screen overflow-hidden' : 'overflow-auto '">
+    <div
+      dir="ltr"
+      :class="isNative ? 'flex flex-col h-screen overflow-hidden' : 'overflow-auto '"
+    >
 
       <div>
-        <PhoneHeader v-if="isNative" />
+        <HeadPage
+          :header="header"
+          v-if="isNative && hideHeaderFooter"
+        />
+        <PhoneHeader v-if="isNative && !hideHeaderFooter" />
         <LazyAppHeader v-if="!isNative" />
 
         <Transition name="slide-from-right">
-        <LazyCart v-if="isShowingCart" />
-      </Transition>
+          <LazyCart v-if="isShowingCart" />
+        </Transition>
 
-      <Transition name="slide-from-left">
-        <MobileMenu v-if="isShowingMobileMenu" />
-      </Transition>
+        <Transition name="slide-from-left">
+          <MobileMenu v-if="isShowingMobileMenu" />
+        </Transition>
 
-      <Transition name="fade">
+        <Transition name="fade">
           <div
             v-if="isShowingCart || isShowingMobileMenu"
             class="bg-black opacity-25 inset-0 z-40 fixed"
             @click="closeCartAndMenu"
           />
         </Transition>
-      <NuxtLoadingIndicator/>
+        <NuxtLoadingIndicator />
       </div>
-  
-     
 
 
 
 
-      <div 
-      class="overflow-x-hidden min-h-[500px]" 
-      :class="isNative ? 'flex-1  flex flex-col py-1 overflow-scroll' : ''">
 
-        
-      <NuxtPage />
+
+      <div
+        class="overflow-x-hidden min-h-[500px]"
+        :class="isNative ? 'flex-1  flex flex-col py-1 overflow-scroll' : ''"
+      >
+
+
+        <NuxtPage />
 
         <!-- page-key="static" -->
-     
+
       </div>
 
-<div>
-  <LazyPhoneFooter v-if="isNative" />
-<LazyAppFooter v-if="!isNative" />
-</div>
+      <div>
+        <LazyPhoneFooter v-if="isNative && !hideHeaderFooter" />
+        <LazyAppFooter v-if="!isNative" />
+      </div>
 
 
     </div>
   </n-message-provider>
   <!-- </n-modal-provider> -->
-  
+
 </template>
 
 <style lang="postcss">
@@ -200,6 +220,7 @@ const isNative = storeSettings.isNative;
 
 
 html.custom-scrollbar {
+
   /* Apply the custom scrollbar styles */
   ::-webkit-scrollbar {
     width: 20px;
@@ -220,6 +241,7 @@ html.custom-scrollbar {
     background-color: #a8bbbf;
   }
 }
+
 html,
 body {
   padding-top: calc(var(--safe-area-inset-top) + 1rem);

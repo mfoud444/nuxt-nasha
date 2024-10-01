@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 const props = defineProps({
     header: {
         type: String as PropType<string>,
@@ -22,7 +22,9 @@ const props = defineProps({
 
 <template>
     <div
-        class=" font-semibold cursor-pointer h-10  hover:bg-gray-300 flex justify-between items-center px-2">
+        class="font-semibold cursor-pointer h-10 flex justify-between items-center px-2"
+        @click="$emit('click')"
+    >
         <div class="flex gap-2 items-center">
             <SvgIcon
                 :icon="prefixIcon"
@@ -31,20 +33,18 @@ const props = defineProps({
             <div>
                 {{ header }}
             </div>
-
         </div>
- 
-    <div>
-        <div class="flex gap-4">
-            <div class="font-normal text-gray-400">
-                {{ label }}
+
+        <div>
+            <div class="flex gap-4">
+                <div class="font-normal text-gray-400">
+                    {{ label }}
+                </div>
+                <SvgIcon
+                    :icon="suffixIcon"
+                    class="text-xl"
+                />
             </div>
-            <SvgIcon
-                :icon="suffixIcon"
-                class="text-xl"
-            />
         </div>
     </div>
-    </div>
-
 </template>

@@ -6,7 +6,7 @@ const router = useRouter();
 const activeKey = ref<string>('shop');
 const { currentPage,updateCurrentPage} = useHelpers();
 const { t } = useI18n();
- 
+
 function handleMenuItemClick(key: string) {
   switch (key) {
     case 'shop':
@@ -19,8 +19,8 @@ function handleMenuItemClick(key: string) {
       router.push({ path:'/cart'}); 
       break;
     case 'me':
-    router.push({ path:'/my-account'}); 
-      // router.push('/settings'); 
+    // router.push({ path:'/my-account'}); 
+      router.push('/settings'); 
       break;
     default:
       break;
@@ -42,7 +42,7 @@ const menuOptions: MenuOption[] = [
     key: 'category',
   },
   {
-    label: () => h(MenuItem, { icon: 'ion:cart', label: t('messages.menu.cart') }),
+    label: () => h(MenuItem, { icon: 'ion:cart', label: t('messages.menu.cart') , showCount:true}),
     key: 'cart',
   },
   {
@@ -56,7 +56,7 @@ watch(route, (newRoute) => {
     activeKey.value = 'shop';
   } else if (newRoute.path === '/categories') {
     activeKey.value = 'category';
-  } else if (newRoute.path === '/cart' || newRoute.path === '/checkout') {
+  } else if (newRoute.path === '/cart' || newRoute.path === '/checkout' || newRoute.path === '/checkout1') {
     activeKey.value = 'cart';
   } else if (newRoute.path === '/my-account') {
     activeKey.value = 'me';

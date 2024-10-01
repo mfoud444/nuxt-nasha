@@ -12,12 +12,14 @@ useHead({
 const { setProducts, updateProductList } = useProducts();
 const { storeSettings } = useAppConfig();
 
-const productsInCategory = ref<Product[]>([]);  // Ref to hold the products in the selected category
+const productsInCategory = ref<Product[]>([]);  
 const isLoading = ref(true);
+const isLoadingInit = ref(true);
 
 // Function to fetch products by category slug
 async function fetchProductCategory(slug: string) {
   isLoading.value = true;
+  console.log(slug)
   const { data: productData } = await useAsyncGql('getProducts', { slug });
   productsInCategory.value = (productData.value.products?.nodes || []) as Product[];
   setProducts(productsInCategory.value);
@@ -36,22 +38,26 @@ async function handleUpdateValue(value: string) {
 // Fetch initial products when the component is mounted
 onMounted(async () => {
   if (productCategories.length) {
-   await handleUpdateValue(productCategories[0]?.slug as string); // Fetch products for the first category by default
+  
+   await handleUpdateValue(productCategories[0]?.slug as string); 
+   isLoadingInit.value = false
   }
 });
 
 
 </script>
 <template>
-      <div v-if="isLoading" class="flex flex-col items-center justify-center h-full">
-      <LoadingIcon />  <!-- Show loading indicator -->
+      <div v-if="isLoadingInit" class="flex flex-col items-center justify-center h-full">
+      <LoadingIcon />  
     </div>
   <main v-else class="container">
+   
     <n-tabs
       class="pb-1"
       @update:value="handleUpdateValue"
       type="line"
     >
+  
       <n-tab-pane
         v-for="(category, index) in productCategories"
         :key="index"
