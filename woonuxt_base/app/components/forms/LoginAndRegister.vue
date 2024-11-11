@@ -22,7 +22,13 @@ const updateFormView = () => {
 watch(route, updateFormView, { immediate: true });
 
 const login = async (userInfo) => {
+  console.log(userInfo)
   const { success, error } = await loginUser(userInfo);
+  if (success) {
+ 
+    message.value = t('messages.account.loggingIn');
+    // router.push({ path:'/'});
+  }
   switch (error) {
     case 'invalid_username':
       errorMessage.value = t('messages.error.invalidUsername');
@@ -33,11 +39,6 @@ const login = async (userInfo) => {
     default:
       errorMessage.value = error;
       break;
-  }
-
-  if (success) {
-    errorMessage.value = '';
-    message.value = t('messages.account.loggingIn');
   }
 };
 

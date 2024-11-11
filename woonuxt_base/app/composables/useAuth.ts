@@ -4,7 +4,7 @@ import type { RegisterCustomerInput, CreateAccountInput } from '#gql';
 export const useAuth = () => {
   const { refreshCart } = useCart();
   const { logGQLError } = useHelpers();
-
+  const isError = useState<boolean>('isError', () => false);
   const customer = useState<Customer>('customer', () => ({ billing: {}, shipping: {} }));
   const viewer = useState<Viewer | null>('viewer', () => null);
   const isPending = useState<boolean>('isPending', () => false);
@@ -18,7 +18,7 @@ export const useAuth = () => {
     try {
       const { loginWithCookies } = await GqlLogin(credentials);
 
-      if (loginWithCookies?.status === 'SUSCSSFUL') {
+      if (loginWithCookies?.status === 'SUCCESS') {
         const { viewer } = await refreshCart();
         if (viewer === null) {
           return {

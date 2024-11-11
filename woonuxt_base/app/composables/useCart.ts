@@ -19,6 +19,12 @@ export function useCart() {
     isLoading.value = true; 
     try {
       const { cart, customer, viewer, paymentGateways } = await GqlGetCart();
+   // Display customer, viewer, and paymentGateways in the console
+   console.log("cart");
+   console.log("cart",cart);
+   console.log("customer:", customer);
+   console.log("viewer:", viewer);
+   console.log("paymentGateways:", paymentGateways);
 
       const { updateCustomer, updateViewer } = useAuth();
       if (cart) updateCart(cart);
@@ -29,7 +35,9 @@ export function useCart() {
       return { cart, customer, viewer, paymentGateways };
     } catch (error: any) {
       logGQLError(error);
+      isLoading.value = false; 
       return { cart: null, customer: null, viewer: null, paymentGateways: null };
+    
     } finally {
       isLoading.value = false; // Reset loading state
     }

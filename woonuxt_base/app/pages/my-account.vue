@@ -13,7 +13,8 @@ useSeoMeta({
 
 <template>
   <div class="container h-full">
-    <div v-if="showLoader || !cart " class="flex flex-col min-h-[500px]">
+    <div v-if="showLoader && !cart " class="flex flex-col min-h-[500px]">
+      {{ cart }}
       <LoadingIcon class="m-auto" />
     </div>
     <template v-else>
