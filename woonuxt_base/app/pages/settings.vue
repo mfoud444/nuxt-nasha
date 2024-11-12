@@ -82,8 +82,8 @@ const router = useRouter();
         </div>
       </div>
     </div>
-
-    <NCard v-if="isLogin" :title="$t('messages.account.accountSettings')">
+    <!-- v-if="isLogin" -->
+    <NCard  :title="$t('messages.account.accountSettings')">
       <div class="flex flex-col space-y-2">
         <SettingsElement :header="$t('messages.account.orders')" prefixIcon="lets-icons:order-light" suffixIcon="ion:more" />
         <NDivider />

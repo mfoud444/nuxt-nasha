@@ -14,7 +14,7 @@ const config: CapacitorConfig = {
   //   allowMixedContent: true
   // },
    server: {
-    url: "http://192.168.3.147:3001",
+    url: "http://192.168.99.100:3001",
     // url:"https://nashastore.netlify.app",
     cleartext: false
   },

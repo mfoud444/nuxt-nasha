@@ -4,10 +4,10 @@ const { theList } = useWishlist();
 <template  >
     <header  class="sticky top-0 z-40  bg-white">
       <div class="container flex items-center  justify-between py-4 pb-2">
-        <div  class="flex items-center">
+        <!-- <div  class="flex items-center">
           <Logo class="md:w-[160px]" />
         
-        </div>
+        </div> -->
        
         <div class="flex justify-end items-center md:w-[160px] flex-1 ml-auto gap-4 md:gap-6">
           
