@@ -1,5 +1,5 @@
 [template.environment]
-  GQL_HOST = "https://linen-hare-730472.hostingersite.com/graphql"
+  GQL_HOST = "https://nashast.store/graphql"
   NUXT_IMAGE_DOMAINS = "nashastore.netlify.app"
 
 [build]
