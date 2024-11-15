@@ -1,3 +1,3 @@
 cp dev/cap.reload.ts capacitor.config.ts
 cp dev/.devLN .env
-npx nuxi dev
+npx nuxi dev --host

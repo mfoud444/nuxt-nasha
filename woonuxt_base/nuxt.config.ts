@@ -54,26 +54,15 @@ export default defineNuxtConfig({
   pinia: {
     storesDirs: ['./stores/**'],
   },
-  'graphql-client': {
-    clients: {
-      default: {
-        host: process.env.GQL_HOST || 'http://localhost:4000/graphql',
-        corsOptions: { 
-          mode: 'cors',
-           credentials: 'include' 
-          },
-      },
-    },
-  },
-  // runtimeConfig: {
-  //   public: {
-  //     GQL_HOST: "http://192.168.99.176/wordpress/index.php?graphql",
-  //     corsOptions: { 
-  //       mode: 'cors',
-  //        credentials: 'include' 
-  //       },
-  //   }
+  // 'graphql-client': {
+  //   clients: {
+  //     default: {
+  //       host: process.env.GQL_HOST || 'http://localhost:4000/graphql',
+  //       corsOptions: { mode: 'cors', credentials: 'include' },
+  //     },
+  //   },
   // },
+
 
   alias: {
     '#constants': resolve('./app/constants'),

@@ -11,10 +11,36 @@ export function useCart() {
   const isUpdatingCart = useState<boolean>('isUpdatingCart', () => false);
   const isUpdatingCoupon = useState<boolean>('isUpdatingCoupon', () => false);
   const paymentGateways = useState<PaymentGateways>('paymentGateways', () => null);
-  const { logGQLError } = useHelpers();
+  const { logGQLError, clearAllCookies } = useHelpers();
 
   const isLoading = useState<boolean>('isLoading', () => false);
   // Refesh the cart from the server
+
+  // async function refreshCart(): Promise<boolean> {
+  //   try {
+  //     const { cart, customer, viewer, paymentGateways } = await GqlGetCart();
+  //     const { updateCustomer, updateViewer } = useAuth();
+     
+
+  //     if (cart) updateCart(cart);
+  //     if (customer) updateCustomer(customer);
+  //     if (viewer) updateViewer(viewer);
+  //     if (paymentGateways) updatePaymentGateways(paymentGateways);
+
+  //     return true; // Cart was successfully refreshed
+  //   } catch (error: any) {
+  //     logGQLError(error);
+  //     clearAllCookies();
+  //     resetInitialState();
+
+  //     return false;
+  //   }
+  // }
+
+  function resetInitialState() {
+    cart.value = null;
+    paymentGateways.value = null;
+  }
   async function refreshCart() {
     isLoading.value = true; 
     try {
@@ -28,8 +54,11 @@ export function useCart() {
 
       const { updateCustomer, updateViewer } = useAuth();
       if (cart) updateCart(cart);
-      if (customer) updateCustomer(customer);
-      if (viewer) updateViewer(viewer);
+      if (customer) 
+        {updateCustomer(customer);
+          // updateViewer(customer);
+        }
+      // if (viewer) updateViewer(viewer);
       if (paymentGateways) updatePaymentGateways(paymentGateways);
 
       return { cart, customer, viewer, paymentGateways };

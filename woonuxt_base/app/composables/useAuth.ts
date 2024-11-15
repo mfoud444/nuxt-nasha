@@ -3,8 +3,9 @@ import type { RegisterCustomerInput, CreateAccountInput } from '#gql';
 
 export const useAuth = () => {
   const { refreshCart } = useCart();
-  const { logGQLError } = useHelpers();
-  const isError = useState<boolean>('isError', () => false);
+  const { logGQLError, clearAllCookies } = useHelpers();
+  const router = useRouter();
+
   const customer = useState<Customer>('customer', () => ({ billing: {}, shipping: {} }));
   const viewer = useState<Viewer | null>('viewer', () => null);
   const isPending = useState<boolean>('isPending', () => false);
@@ -19,7 +20,7 @@ export const useAuth = () => {
       const { loginWithCookies } = await GqlLogin(credentials);
 
       if (loginWithCookies?.status === 'SUCCESS') {
-        const { viewer } = await refreshCart();
+        await refreshCart();
         if (viewer === null) {
           return {
             success: false,
@@ -29,30 +30,28 @@ export const useAuth = () => {
         }
       }
 
-      isPending.value = false;
       return {
         success: true,
         error: null,
       };
     } catch (error: any) {
       logGQLError(error);
-      isPending.value = false;
 
       return {
         success: false,
         error: error?.gqlErrors?.[0]?.message,
       };
+    } finally {
+      isPending.value = false;
     }
   };
 
   // Log out the user
   const logoutUser = async (): Promise<{ success: boolean; error: any }> => {
-    const { clearAllCookies } = useHelpers();
     isPending.value = true;
     try {
       const { logout } = await GqlLogout();
       if (logout) {
-        isPending.value = false;
         await refreshCart();
         clearAllCookies();
         viewer.value = null;
@@ -61,8 +60,10 @@ export const useAuth = () => {
       return { success: true, error: null };
     } catch (error) {
       logGQLError(error);
-      isPending.value = false;
       return { success: false, error };
+    } finally {
+      isPending.value = false;
+      router.push('/my-account');
     }
   };
 
@@ -73,7 +74,7 @@ export const useAuth = () => {
       await GqlRegisterCustomer({ input: userInfo });
       return { success: true, error: null };
     } catch (error: any) {
-      logGQLError;
+      logGQLError(error);
       const gqlError = error?.gqlErrors?.[0];
       isPending.value = false;
       return { success: false, error: gqlError?.message };
@@ -107,14 +108,22 @@ export const useAuth = () => {
       }
       return { success: false, error: 'There was an error sending the reset password email. Please try again later.' };
     } catch (error: any) {
-      logGQLError;
+      logGQLError(error);
       isPending.value = false;
       const gqlError = error?.gqlErrors?.[0];
       return { success: false, error: gqlError?.message };
     }
   };
 
-  const resetPasswordWithKey = async ({ key, login, password }: { key: string; login: string; password: string }): Promise<{ success: boolean; error: any }> => {
+  const resetPasswordWithKey = async ({
+    key,
+    login,
+    password,
+  }: {
+    key: string;
+    login: string;
+    password: string;
+  }): Promise<{ success: boolean; error: any }> => {
     try {
       isPending.value = true;
       const { resetUserPassword } = await GqlResetPasswordKey({ key, login, password });
@@ -162,6 +171,7 @@ export const useAuth = () => {
   };
 
   const avatar = computed(() => viewer.value?.avatar?.url ?? null);
+  const wishlistLink = computed<string>(() => (viewer.value ? '/my-account?tab=wishlist' : '/wishlist'));
 
   return {
     viewer,
@@ -170,6 +180,7 @@ export const useAuth = () => {
     orders,
     downloads,
     avatar,
+    wishlistLink,
     loginUser,
     updateCustomer,
     updateViewer,
