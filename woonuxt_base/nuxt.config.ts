@@ -123,8 +123,9 @@ export default defineNuxtConfig({
     locales: [
       { code: 'en_US', file: 'en-US.json', name: 'English 🇺🇸' },
       { code: 'ar_SA', file: 'ar-SA.json', name: 'العربية 🇸🇦' , dir: "rtl" },
-      
+
       // { code: 'de_DE', file: 'de-DE.json', name: 'Deutsch 🇩🇪' },
+      
       // { code: 'es_ES', file: 'es-ES.json', name: 'Español 🇪🇸' },
       // { code: 'fr_FR', file: 'fr-FR.json', name: 'Français 🇫🇷' },
       // { code: 'it_IT', file: 'it-IT.json', name: 'Italiano 🇮🇹' },
