@@ -74,6 +74,7 @@ export default defineNuxtConfig({
     // '@stores': resolve('./app/stores'),  
     // '@utils': resolve('./app/utils'),  
   },
+  
 
   // hooks: {
   //   'pages:extend'(pages) {
