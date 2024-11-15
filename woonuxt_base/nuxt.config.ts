@@ -6,6 +6,7 @@ import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import Terminal from 'vite-plugin-terminal'
 
+
 export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
