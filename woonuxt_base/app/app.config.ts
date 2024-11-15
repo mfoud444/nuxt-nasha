@@ -1,5 +1,5 @@
 /**
- * App configuration.
+ * App configuration
  * This file is used to configure the app settings.
  * Below are the default values.
  */
