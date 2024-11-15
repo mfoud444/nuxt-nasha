@@ -62,7 +62,7 @@ export default defineNuxtConfig({
     clients: {
       default: {
         host: process.env.GQL_HOST || 'http://localhost:4000/graphql',
-        corsOptions: { mode: 'cors', credentials: 'include' },
+        corsOptions: { mode: "no-cors", credentials: 'include' },
       },
     },
   },
