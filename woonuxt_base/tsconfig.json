@@ -4,7 +4,7 @@
     "allowJs": true,
     "types": ["@nuxt/image", "@nuxtjs/i18n"],
     // "paths": {
-    //   // "@/*": ["../woonuxt_base/app"],  // Ensure this matches your structure
+    //   // "@/*": ["../woonuxt_base/app"],  
     
     // },
   }
