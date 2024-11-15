@@ -9,6 +9,7 @@ NUXT_PUBLIC_PRODUCTS_PER_PAGE="24"
 # Stripe API key
 NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_abcdefghijklmnopqrstuvwxyz"
 
+
 # Color of input and button elements
 PRIMARY_COLOR="#ff0000"
 
