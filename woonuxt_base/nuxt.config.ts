@@ -54,6 +54,8 @@ export default defineNuxtConfig({
   pinia: {
     storesDirs: ['./stores/**'],
   },
+
+  
   // 'graphql-client': {
   //   clients: {
   //     default: {
