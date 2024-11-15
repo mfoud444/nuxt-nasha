@@ -1,5 +1,5 @@
-# GraphQL endpoint https://nashast.store/graphql
-GQL_HOST="https://linen-hare-730472.hostingersite.com/graphql"
+# GraphQL endpoint https://nashast.store/graphql https://linen-hare-730472.hostingersite.com/graphql
+GQL_HOST="https://nashast.store/graphql"
 
 # If you don't have the plugin installed, you can configure the rest of the settings here.
 
