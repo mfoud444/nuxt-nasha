@@ -1,6 +1,7 @@
 /// <reference types="@capacitor-community/safe-area" />
 import type { CapacitorConfig } from '@capacitor/cli';
 
+
 const config: CapacitorConfig = {
   appId: 'com.nasha.store',
   appName: 'Nasha Store',
